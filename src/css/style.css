@@ -1,0 +1,21 @@
+:root {
+  --text-color: black;
+  --bg-color: #e5e7eb;
+}
+
+/* border box */
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  font: 16px/1.7 "Source Sans Pro", Helvetica, Helvetica Neue, Arial, sans-serif;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
