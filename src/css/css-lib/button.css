@@ -1,0 +1,300 @@
+.btn {
+  font-size: 1rem;
+  line-height: 1.75;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  border-style: none;
+  outline: none;
+  padding: 0.375rem 1.125rem;
+  height: 3.5rem;
+  min-width: 9rem;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.4rem;
+  vertical-align: middle;
+  text-decoration: none;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-appearance: none;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.btn:hover {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.btn:active {
+  box-shadow: 5px 5px -3px 4px rgba(0, 0, 0, 0.2),
+    0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.btn::before {
+  content: "";
+  width: 100%;
+  height: 120%;
+  background-color: rgba(252, 252, 252, 0.1);
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(1);
+  opacity: 0;
+  transition: opacity 0.3s, transform 0.2s;
+}
+.btn:active::before {
+  opacity: 0.9;
+  transform: scale(0);
+  transition: transform 0s, opacity 0s;
+}
+
+.btn--sm {
+  font-size: 0.875rem;
+  height: 2.625rem;
+  min-width: 4rem;
+  gap: 0.6rem;
+}
+.btn--md {
+  font-size: 1rem;
+  height: 3.5rem;
+  min-width: 9rem;
+  gap: 0.4rem;
+}
+.btn--lg {
+  font-size: 1.175rem;
+  height: 4.25rem;
+  min-width: 10rem;
+  gap: 0.2rem;
+}
+
+.btn--rounded {
+  border-radius: 0.25rem;
+}
+.btn--pill {
+  border-radius: 2rem;
+}
+.btn.btn--danger {
+  color: var(--white-color1);
+  background-color: rgba(220, 38, 38); /*600*/
+  fill: currentColor;
+}
+.btn.btn--danger:hover {
+  background-color: rgba(185, 28, 28);
+}
+
+.btn.btn--default {
+  color: rgba(0, 0, 0, 0.87);
+  background-color: rgba(229, 231, 235); /*200*/
+  fill: currentColor;
+}
+.btn.btn--default:hover {
+  background-color: rgba(209, 213, 219);
+}
+
+.btn.btn--success {
+  color: var(--white-color1);
+  background-color: rgba(5, 150, 105); /*600*/
+  fill: currentColor;
+}
+.btn.btn--success:hover {
+  background-color: rgba(4, 120, 87);
+}
+.btn.btn--dark {
+  background-color: rgba(31, 41, 55); /*800*/
+  color: var(--white-color1);
+  fill: currentColor;
+}
+.btn.btn--dark:hover {
+  background-color: rgba(55, 65, 81);
+}
+.btn.btn--blue {
+  background-color: rgba(37, 99, 235); /*600*/
+  color: var(--white-color1);
+  fill: currentColor;
+}
+.btn.btn--blue:hover {
+  background-color: rgba(29, 78, 216);
+}
+.btn.btn--yellow {
+  background-color: rgba(245, 158, 11); /*500*/
+  color: var(--white-color1);
+  fill: currentColor;
+}
+.btn.btn--yellow:hover {
+  background-color: rgba(217, 119, 6);
+}
+.btn.btn--black {
+  background-color: var(--black-color3);
+  color: var(--white-color3);
+  fill: currentColor;
+}
+.btn.btn--black:hover {
+  background-color: var(--white-color3);
+  color: var(--black-color3);
+}
+.btn.btn--white {
+  background-color: var(--white-color3);
+  color: var(--black-color3);
+  fill: currentColor;
+}
+.btn.btn--white:hover {
+  background-color: var(--black-color3);
+  color: var(--white-color3);
+}
+
+.btn.btn--no-shadow {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.btn.btn--outlined {
+  background-color: transparent;
+  border: 1px solid var(--white-color1);
+  box-shadow: none;
+}
+
+.btn--outlined.btn--danger {
+  color: rgba(220, 38, 38);
+  border: 1px solid rgba(220, 38, 38);
+  fill: currentColor;
+}
+.btn--outlined.btn--danger:hover {
+  background-color: rgba(220, 38, 38, 0.1);
+}
+.btn--outlined.btn--default {
+  color: rgba(229, 231, 235);
+  border: 1px solid rgba(229, 231, 235);
+  fill: currentColor;
+}
+.btn--outlined.btn--default:hover {
+  background-color: rgba(229, 231, 235, 0.1);
+}
+.btn--outlined.btn--success {
+  color: rgba(5, 150, 105);
+  border: 1px solid rgba(5, 150, 105);
+  fill: currentColor;
+}
+.btn--outlined.btn--success:hover {
+  background-color: rgba(5, 150, 105, 0.1);
+}
+.btn--outlined.btn--dark {
+  color: rgba(31, 41, 55);
+  border: 1px solid rgba(31, 41, 55);
+  fill: currentColor;
+}
+.btn--outlined.btn--dark:hover {
+  background-color: rgba(31, 41, 55, 0.1);
+}
+.btn--outlined.btn--blue {
+  color: rgba(37, 99, 235);
+  border: 1px solid rgba(37, 99, 235);
+  fill: currentColor;
+}
+.btn--outlined.btn--blue:hover {
+  background-color: rgba(37, 99, 235, 0.1);
+}
+.btn--outlined.btn--yellow {
+  color: rgba(245, 158, 11);
+  border: 1px solid rgba(245, 158, 11);
+  fill: currentColor;
+}
+.btn--outlined.btn--yellow:hover {
+  background-color: rgba(245, 158, 11, 0.1);
+}
+.btn--outlined.btn--black {
+  color: var(--black-color3);
+  border: 1px solid var(--black-color3);
+  fill: currentColor;
+}
+.btn--outlined.btn--black:hover {
+  color: rgba(156, 163, 175);
+  background-color: var(--black-color3);
+}
+.btn--outlined.btn--white {
+  color: var(--white-color3);
+  border: 1px solid var(--white-color3);
+  fill: currentColor;
+}
+.btn--outlined.btn--white:hover {
+  color: var(--black-color3);
+  background-color: var(--white-color3);
+}
+.btn.btn--link {
+  background-color: transparent;
+  padding: 0.375rem 0.5rem;
+  min-width: 4rem;
+  box-shadow: none;
+}
+.btn.btn--link:hover {
+  filter: brightness(0.9);
+  background-color: rgba(128, 128, 128, 0.14);
+}
+
+.btn__icon {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn.btn--icon {
+  border-radius: 0;
+  background-color: transparent;
+  padding: 0.4rem;
+  border: none;
+  height: auto;
+  min-width: auto;
+  box-shadow: none;
+  fill: #e0e0e0;
+}
+.btn.btn--icon-circle {
+  border-radius: 50%;
+  background-color: transparent;
+  padding: 0.4rem;
+  border: none;
+  min-width: auto;
+  max-width: 3.5rem;
+  box-shadow: none;
+  fill: #e0e0e0;
+}
+.btn--sm.btn--icon-circle {
+  max-width: 2.625rem;
+  min-width: 2.625rem;
+  height: 2.625rem;
+}
+.btn--md.btn--icon-circle {
+  max-width: 3.5rem;
+  min-width: 3.5rem;
+  height: 3.5rem;
+}
+.btn--lg.btn--icon-circle {
+  max-width: 4.25rem;
+  min-width: 4.25rem;
+  height: 4.25rem;
+}
+.btn.btn--icon-rounded {
+  background-color: transparent;
+  padding: 0.4rem;
+  height: auto;
+  border: none;
+  min-width: auto;
+  box-shadow: none;
+  fill: #e0e0e0;
+}
+.btn.btn--icon:hover {
+  background-color: rgba(128, 128, 128, 0.35);
+}
+.btn.btn--icon-circle:hover {
+  background-color: rgba(128, 128, 128, 0.35);
+}
+.btn.btn--icon-rounded:hover {
+  background-color: rgba(128, 128, 128, 0.35);
+}
+
+.btn.btn--disabled {
+  filter: grayscale(0.6);
+  cursor: default;
+  box-shadow: none;
+}
