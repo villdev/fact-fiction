@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "pure-react-carousel": "^1.27.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
   },
