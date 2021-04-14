@@ -581,7 +581,7 @@ header {
 }
 
 .banner-slide > div {
-  /* max-height: 60vh; */
+  /* height: 500px; */
 }
 .banner-dot {
   position: absolute;

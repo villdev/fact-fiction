@@ -10,7 +10,7 @@ export default function BannerCarousel({ content }) {
         visibleSlides={1}
         step={1}
         naturalSlideWidth={600}
-        naturalSlideHeight={250}
+        naturalSlideHeight={220}
         totalSlides={4}
         // lockOnWindowScroll
         isPlaying
