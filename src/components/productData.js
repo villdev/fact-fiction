@@ -1,5 +1,6 @@
-export const bookData = [
+export const productData = [
   {
+    id: 1,
     title: "Harry Potter and the Philosopher's Stone",
     author: "J.K. Rowling",
     covers: ["/src/images/covers/hptps.jpg"],
@@ -43,6 +44,7 @@ export const bookData = [
     ],
   },
   {
+    id: 2,
     title:
       "Eloquent JavaScript, 3rd Edition: A Modern Introduction to Programming",
     author: "Marjin Haverbeke",
@@ -97,6 +99,7 @@ export const bookData = [
     ],
   },
   {
+    id: 3,
     title: "The Way of Kings",
     author: "Brandon Sanderson",
     covers: ["/src/images/covers/twok.jpg"],
@@ -152,6 +155,7 @@ export const bookData = [
     ],
   },
   {
+    id: 4,
     title:
       "Eloquent JavaScript, 3rd Edition: A Modern Introduction to Programming",
     author: "Marjin Haverbeke",
@@ -186,6 +190,62 @@ export const bookData = [
     weight: "907g",
     dimensions: "17.93 x 2.87 x 23.5 cm",
     genres: ["Textbook", "Library & Information Science"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4.5,
+        review:
+          "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        review:
+          "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+      },
+    ],
+  },
+  {
+    id: 5,
+    title: "The Way of Kings",
+    author: "Brandon Sanderson",
+    covers: ["/src/images/covers/twok.jpg"],
+    price: [707, 1500],
+    discount: [0, 20],
+    synopsis: [
+      "From #1 New York Times bestselling author Brandon Sanderson, The Way of Kings, Book One of the Stormlight Archive begins an incredible new saga of epic proportion.",
+
+      "Roshar is a world of stone and storms. Uncanny tempests of incredible power sweep across the rocky terrain so frequently that they have shaped ecology and civilization alike. Animals hide in shells, trees pull in branches, and grass retracts into the soilless ground. Cities are built only where the topography offers shelter.",
+
+      "It has been centuries since the fall of the ten consecrated orders known as the Knights Radiant, but their Shardblades and Shardplate remain: mystical swords and suits of armor that transform ordinary men into near-invincible warriors. Men trade kingdoms for Shardblades. Wars were fought for them, and won by them",
+
+      "One such war rages on a ruined landscape called the Shattered Plains. There, Kaladin, who traded his medical apprenticeship for a spear to protect his little brother, has been reduced to slavery. In a war that makes no sense, where ten armies fight separately against a single foe, he struggles to save his men and to fathom the leaders who consider them expendable.",
+
+      "Brightlord Dalinar Kholin commands one of those other armies. Like his brother, the late king, he is fascinated by an ancient text called The Way of Kings. Troubled by over-powering visions of ancient times and the Knights Radiant, he has begun to doubt his own sanity.",
+
+      "Across the ocean, an untried young woman named Shallan seeks to train under an eminent scholar and notorious heretic, Dalinar's niece, Jasnah. Though she genuinely loves learning, Shallan's motives are less than pure. As she plans a daring theft, her research for Jasnah hints at secrets of the Knights Radiant and the true cause of the war.",
+
+      "The result of over ten years of planning, writing, and world-building, The Way of Kings is but the opening movement of the Stormlight Archive, a bold masterpiece in the making.",
+
+      "Speak again the ancient oaths:",
+
+      "Life before death. Strength before weakness. Journey before Destination. and return to men the Shards they once bore. The Knights Radiant must stand again.",
+    ],
+    rating: [4.7, 14062],
+    format: ["Paperback", "Hardcover"],
+    pages: 1280,
+    language: "English",
+    publishDate: "24 May 2011",
+    publisher: "Tor Fantasy",
+    isbn10: "0765365278",
+    isbn13: "0765365279",
+    weight: "567g",
+    dimensions: "10.72 x 5.08 x 17.83 cm",
+    genres: ["Fantasy", "Fiction"],
     reviews: [
       {
         avatar: "/src/images/avatar.jpeg",

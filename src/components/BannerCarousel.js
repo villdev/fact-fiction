@@ -11,14 +11,20 @@ export default function BannerCarousel({ content }) {
         step={1}
         naturalSlideWidth={600}
         naturalSlideHeight={220}
-        totalSlides={4}
+        totalSlides={content.length}
         // lockOnWindowScroll
-        isPlaying
+        isPlaying={content.length > 1}
         interval={5000}
-        touchEnabled={true}
+        touchEnabled={content.length > 1}
+        className={content.length === 1 && "custom-banner"}
       >
         <Slider>
-          <Slide className="banner-slide" index={0}>
+          {content.map((banner, i) => (
+            <Slide key={i} className="banner-slide" index={i}>
+              <Banner bannerContent={banner} />
+            </Slide>
+          ))}
+          {/* <Slide className="banner-slide" index={0}>
             <Banner bannerContent={content[0]} />
           </Slide>
           <Slide className="banner-slide" index={1}>
@@ -29,9 +35,10 @@ export default function BannerCarousel({ content }) {
           </Slide>
           <Slide className="banner-slide" index={3}>
             <Banner bannerContent={content[3]} />
-          </Slide>
+          </Slide> */}
         </Slider>
-        <DotGroup className="banner-dot" />
+        {/* <DotGroup className="banner-dot" /> */}
+        {content.length > 1 && <DotGroup className="banner-dot" />}
       </CarouselProvider>
     </div>
   );
