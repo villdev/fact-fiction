@@ -3,7 +3,7 @@ export const productData = [
     id: 1,
     title: "Harry Potter and the Philosopher's Stone",
     author: "J.K. Rowling",
-    covers: ["/src/images/covers/hptps.jpg"],
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
     price: [499, 800],
     discount: [42, 0],
     synopsis: [
