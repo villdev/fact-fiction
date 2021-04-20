@@ -12,8 +12,8 @@ export default function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Home /> */}
-      <ProductPage productData={productData[0]} />
+      <Home />
+      {/* <ProductPage productData={productData[0]} /> */}
       <Footer />
     </div>
   );

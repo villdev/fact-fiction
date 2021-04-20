@@ -51,6 +51,24 @@ body {
   color: var(--bg);
   background: var(--black-color);
 }
+.btn {
+  border-radius: var(--btn-border-radius);
+  font-family: var(--font);
+}
+/* !created generic outline... remove commented out styles from other outline specific */
+.btn.btn--outlined {
+  border-width: 2px;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  color: var(--black-color);
+  line-height: 1.25rem;
+  font-family: var(--font);
+  border-radius: var(--btn-border-radius);
+}
+.btn.btn--outlined:hover {
+  background-color: var(--black-color);
+  color: #fff;
+}
 
 /* container */
 .header-container-75 {
@@ -560,9 +578,9 @@ header {
 .btn-banner {
   width: 144px;
   margin-top: 1rem;
-  border-radius: var(--btn-border-radius);
+  /* border-radius: var(--btn-border-radius);
 
-  font-family: var(--font);
+  font-family: var(--font); */
 }
 /* .banner__nav {
   display: flex;
@@ -698,23 +716,19 @@ header {
 .btn.btn-see-all {
   align-self: center;
   min-width: 144px;
-  border-width: 2px;
+  /* border-width: 2px;
   padding-left: 1.75rem;
   padding-right: 1.75rem;
-  /* font-size: 0.875rem; */
-  /* font-weight: 500; */
   color: var(--black-color);
-  /* letter-spacing: 1.25px; */
-  /* text-transform: uppercase; */
   line-height: 1.25rem;
   font-family: var(--font);
-  border-radius: var(--btn-border-radius);
+  border-radius: var(--btn-border-radius); */
 }
-.btn.btn.btn-see-all:hover {
+
+/* .btn.btn.btn-see-all:hover {
   background-color: var(--black-color);
-  /* color: var(--text-light); */
   color: #fff;
-}
+} */
 
 .thumbnail-book-wrapper {
   display: flex;
@@ -1352,7 +1366,7 @@ footer {
   justify-content: space-between;
   position: relative;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 4rem;
+  padding-bottom: 3rem;
 }
 .product-display__covers {
   flex-basis: 40%;
@@ -1429,8 +1443,8 @@ footer {
 }
 
 .cover-dot > button {
-  width: 12px;
-  height: 12px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background-color: var(--border);
   margin-right: 1rem;
@@ -1575,7 +1589,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-right: 1rem;
+  padding-right: 2rem;
   margin-right: 1rem;
   border-right: 1px solid var(--border);
 }
@@ -1620,27 +1634,274 @@ footer {
   align-self: flex-end;
   margin: 0 1rem;
   min-width: 144px;
-  border-radius: var(--btn-border-radius);
-  font-family: var(--font);
+  /* border-radius: var(--btn-border-radius);
+  font-family: var(--font); */
 }
 .btn-add-to-cart {
   align-self: flex-end;
   min-width: 144px;
-  border-width: 2px;
+  /* border-width: 2px;
   padding-left: 1.75rem;
   padding-right: 1.75rem;
-  /* font-size: 0.875rem; */
-  /* font-weight: 500; */
   color: var(--black-color);
-  /* letter-spacing: 1.25px; */
-  /* text-transform: uppercase; */
   line-height: 1.25rem;
   font-family: var(--font);
-  border-radius: var(--btn-border-radius);
+  border-radius: var(--btn-border-radius); */
 }
 
-.btn.btn.btn-add-to-cart:hover {
+/* .btn.btn.btn-add-to-cart:hover {
   background-color: var(--black-color);
-  /* color: var(--text-light); */
   color: #fff;
+} */
+
+/* product-full-details */
+.product-display__full-details {
+  margin-top: 2.5rem;
+  display: flex;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.product-display__synopsis {
+  margin-left: calc(65px + 2rem);
+  flex-basis: calc(40% - 65px - 2rem);
+}
+.book-synopsis {
+  color: var(--text-light);
+}
+.product-display__misc-details {
+  margin-left: 4%;
+}
+.book-misc-details {
+  position: relative;
+}
+.book-misc-detail {
+  display: flex;
+}
+.book-misc-detail__header {
+  color: var(--text-light);
+  font-weight: 500;
+  margin-right: 0.5rem;
+}
+.book-misc-detail__content {
+  font-weight: 500;
+}
+
+.product-display__full-details-header {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 0.875rem;
+}
+/* todo changed order using flex for below 2 styles */
+.product-display__misc-details {
+  order: 1;
+  margin-left: calc(65px + 2rem);
+  flex-basis: calc(40% - 65px - 2rem);
+}
+.product-display__synopsis {
+  order: 2;
+  margin-left: 4%;
+  flex-basis: calc(100% - 40% - 4%);
+}
+
+/* review-wrapper */
+.product-display__review-wrapper {
+  display: flex;
+  margin-top: 2.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.book-review-stats-wrapper {
+  margin-left: calc(65px + 2rem);
+  flex-basis: calc(40% - 65px - 2rem);
+}
+
+.review-stats__header {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 0.875rem;
+}
+.review-stats__content {
+  display: flex;
+  flex-direction: column;
+}
+.review-stats--overall {
+  display: flex;
+  line-height: 3rem;
+}
+.review-stats--overall-rating {
+  font-size: 2rem;
+  font-weight: 500;
+  display: flex;
+  /* align-items: flex-end; */
+}
+.review-state--overall-stars {
+  display: flex;
+  /* align-items: flex-end; */
+  margin-left: 0.5rem;
+  /* padding-bottom: 0.2rem; */
+}
+.review-state--overall-reviews {
+  display: flex;
+  /* align-items: flex-end; */
+  margin-left: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-light);
+}
+.review-stats--star-wrapper {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.review-stats--star {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+.review-star {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  position: relative;
+  flex-basis: 5%;
+}
+.review-bar {
+  flex-basis: 70%;
+  /* flex-grow: 1; */
+  height: 100%;
+  background-color: var(--bg-card);
+  position: relative;
+  border-radius: 0.5rem;
+}
+.review-bar__fill {
+  height: 100%;
+  width: var(--percent);
+  background-color: var(--fill-color);
+  border-radius: 0.5rem;
+}
+.review-star--total {
+  display: flex;
+  align-items: center;
+  flex-basis: 17%;
+  /* justify-content: flex-end; */
+  position: relative;
+}
+.review-percentage {
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  flex-basis: 48%;
+}
+.review-total {
+  margin-left: 0.2rem;
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: var(--text-light);
+  flex-basis: 48%;
+}
+
+.customer-review-wrapper {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+.customer-review__header {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+.customer-review__content {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+.btn-write-review {
+  margin-top: 0.5rem;
+  /* max-width: 144px; */
+  max-width: 160px;
+  /* border-width: 2px;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  color: var(--black-color);
+  line-height: 1.25rem;
+  font-family: var(--font);
+  border-radius: var(--btn-border-radius); */
+}
+
+/* .btn.btn.btn-write-review:hover {
+  background-color: var(--black-color);
+  color: #fff;
+} */
+.book-reviews-wrapper {
+  margin-left: 4%;
+  flex-basis: calc(100% - 40% - 4%);
+}
+
+.book-reviews__header {
+  font-weight: 500;
+  font-size: 1.2rem;
+  /* margin-bottom: 0.875rem; */
+  margin-bottom: 2rem;
+  display: flex;
+  /* align-items: center; */
+  align-items: flex-end;
+}
+.review-filter-btn {
+  margin-left: auto;
+  transform: translateY(-0.2rem);
+}
+.book-reviews__content {
+  display: flex;
+  flex-direction: column;
+}
+.book-review-wrapper {
+  position: relative;
+  margin-bottom: 2.5rem;
+}
+.book-review__header {
+  display: flex;
+  /* align-items: center; */
+  margin-bottom: 0.5rem;
+}
+.book-review__user-avatar {
+  margin-right: 0.8rem;
+}
+.book-review__details-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+.book-review__username {
+  line-height: 1rem;
+}
+.book-review__details {
+  display: flex;
+  justify-content: space-between;
+}
+.book-review__user-rating {
+  font-weight: 500;
+}
+.book-review__user-rating > div {
+  margin-right: 0.5rem;
+}
+.book-review__rating-date {
+  color: var(--text-light);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.book-review__content {
+  /* color: var(--text-light); */
+  font-size: 0.875rem;
+}
+
+.btn-view-all-review {
+  /* align-self: center; */
+  /* align-self: flex-start; */
+  margin-bottom: 2rem;
+  /* max-width: 144px; */
+  /* max-width: 180px; */
 }

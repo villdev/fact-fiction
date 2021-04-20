@@ -29,17 +29,25 @@ export const productData = [
         avatar: "/src/images/avatar.jpeg",
         name: "Shobhit Kuruvilla",
         date: "07-04-2021",
-        rating: 4.5,
-        review:
-          "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
       {
         avatar: "/src/images/avatar.jpeg",
         name: "Shobhit Kuruvilla",
         date: "08-04-2021",
         rating: 4.7,
-        review:
-          "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
     ],
   },
@@ -85,16 +93,24 @@ export const productData = [
         name: "Shobhit Kuruvilla",
         date: "07-04-2021",
         rating: 4.5,
-        review:
-          "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
       {
         avatar: "/src/images/avatar.jpeg",
         name: "Shobhit Kuruvilla",
         date: "08-04-2021",
         rating: 4.7,
-        review:
-          "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
     ],
   },
@@ -141,16 +157,24 @@ export const productData = [
         name: "Shobhit Kuruvilla",
         date: "07-04-2021",
         rating: 4.5,
-        review:
-          "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
       {
         avatar: "/src/images/avatar.jpeg",
         name: "Shobhit Kuruvilla",
         date: "08-04-2021",
         rating: 4.7,
-        review:
-          "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
     ],
   },
@@ -196,16 +220,24 @@ export const productData = [
         name: "Shobhit Kuruvilla",
         date: "07-04-2021",
         rating: 4.5,
-        review:
-          "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
       {
         avatar: "/src/images/avatar.jpeg",
         name: "Shobhit Kuruvilla",
         date: "08-04-2021",
         rating: 4.7,
-        review:
-          "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
     ],
   },
@@ -252,16 +284,24 @@ export const productData = [
         name: "Shobhit Kuruvilla",
         date: "07-04-2021",
         rating: 4.5,
-        review:
-          "1Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
       {
         avatar: "/src/images/avatar.jpeg",
         name: "Shobhit Kuruvilla",
         date: "08-04-2021",
         rating: 4.7,
-        review:
-          "2Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et. Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam, facilis. Iusto debitis ipsam saepe? Excepturi aut dolor, beatae accusamus aperiam alias asperiores incidunt a laudantium libero eos animi ducimus! Et.",
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
       },
     ],
   },

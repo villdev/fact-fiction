@@ -2,8 +2,11 @@ import React from "react";
 import Path from "./Path";
 import ClampLines from "react-clamp-lines";
 import bookImg1 from "../images/covers/hptps.jpg";
+import ThumbnailView from "./ThumbnailView";
+import { productData as bookData } from "./productData";
 
 export default function ProductPage({ productData }) {
+  const similarBooksData = [...bookData];
   return (
     <div className="product-page-wrapper container-75">
       <Path pathHistory={["Home", "Genre", "Fiction", productData.title]} />
@@ -119,13 +122,16 @@ export default function ProductPage({ productData }) {
         </div>
         <div className="product-display__full-details">
           <div className="product-display__synopsis">
-            <div className="product-display__full-details-headee">
+            <div className="product-display__full-details-header">
               Synopsis:
             </div>
             <div className="product-display__full-details-content book-synopsis">
-              {productData.synopsis[0]} Lorem ipsum dolor sit amet consectetur
+              {productData.synopsis.map((para, index) => (
+                <p key={index}>{para}</p>
+              ))}
+              {/* {productData.synopsis[0]} Lorem ipsum dolor sit amet consectetur
               adipisicing elit. Blanditiis labore reprehenderit dolor ipsa,
-              repudiandae hic dolore eligendi quidem
+              repudiandae hic dolore eligendi quidem */}
             </div>
           </div>
           <div className="product-display__misc-details">
@@ -178,7 +184,178 @@ export default function ProductPage({ productData }) {
             </div>
           </div>
         </div>
-        <div className="product-display__review-wrapper"></div>
+        <div className="product-display__review-wrapper">
+          <div className="book-review-stats-wrapper">
+            <div className="review-stats__header">Customer reviews</div>
+            <div className="review-stats__content">
+              <div className="review-stats--overall">
+                <div className="review-stats--overall-rating">
+                  {productData.rating[0]}
+                </div>
+                <div className="review-state--overall-stars">
+                  <div
+                    className="stars"
+                    style={{
+                      "--rating": productData.rating[0],
+                      // "--star-background": "#76DB98",
+                      "--star-size": "1.5rem",
+                    }}
+                    aria-label="Rating of this product out of 5."
+                  ></div>
+                </div>
+                <div className="review-state--overall-reviews">
+                  {productData.rating[1]} reviews
+                </div>
+              </div>
+              <div className="review-stats--star-wrapper">
+                <div className="review-stats--star">
+                  <div className="review-star">5</div>
+                  <div className="review-bar">
+                    <div
+                      className="review-bar__fill"
+                      style={{ "--percent": "75%", "--fill-color": "#76DB98" }}
+                    >
+                      &nbsp;
+                    </div>
+                  </div>
+                  <div className="review-star--total">
+                    <div className="review-percentage">75%</div>
+                    <div className="review-total">982</div>
+                  </div>
+                </div>
+                <div className="review-stats--star">
+                  <div className="review-star">4</div>
+                  <div className="review-bar">
+                    <div
+                      className="review-bar__fill"
+                      style={{ "--percent": "16%", "--fill-color": "#B7EA83" }}
+                    >
+                      &nbsp;
+                    </div>
+                  </div>
+                  <div className="review-star--total">
+                    <div className="review-percentage">16%</div>
+                    <div className="review-total">205</div>
+                  </div>
+                </div>
+                <div className="review-stats--star">
+                  <div className="review-star">3</div>
+                  <div className="review-bar">
+                    <div
+                      className="review-bar__fill"
+                      style={{ "--percent": "5%", "--fill-color": "#F6D757" }}
+                    >
+                      &nbsp;
+                    </div>
+                  </div>
+                  <div className="review-star--total">
+                    <div className="review-percentage">5%</div>
+                    <div className="review-total">65</div>
+                  </div>
+                </div>
+                <div className="review-stats--star">
+                  <div className="review-star">2</div>
+                  <div className="review-bar">
+                    <div
+                      className="review-bar__fill"
+                      style={{ "--percent": "1%", "--fill-color": "#FBB851" }}
+                    >
+                      &nbsp;
+                    </div>
+                  </div>
+                  <div className="review-star--total">
+                    <div className="review-percentage">1%</div>
+                    <div className="review-total">17</div>
+                  </div>
+                </div>
+                <div className="review-stats--star">
+                  <div className="review-star">1</div>
+                  <div className="review-bar">
+                    <div
+                      className="review-bar__fill"
+                      style={{ "--percent": "3%", "--fill-color": "#F17A54" }}
+                    >
+                      &nbsp;
+                    </div>
+                  </div>
+                  <div className="review-star--total">
+                    <div className="review-percentage">3%</div>
+                    <div className="review-total">46</div>
+                  </div>
+                </div>
+              </div>
+              <div className="customer-review-wrapper">
+                <div className="customer-review__header">
+                  Review this product
+                </div>
+                <div className="customer-review__content">
+                  Share your thoughts with other customers.
+                  <button className="btn btn--dark btn--sm btn--outlined btn-write-review">
+                    Write a review
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="book-reviews-wrapper">
+            <div className="book-reviews__header">
+              Reviews
+              <div className="review-filter-btn">
+                <select name="review-filter" id="review-filter">
+                  <option value="top">Top Reviews</option>
+                  <option value="recent">Recent Reviews</option>
+                </select>
+              </div>
+            </div>
+            <div className="book-reviews__content">
+              {productData.reviews.map((review, index) => (
+                <div key={index} className="book-review-wrapper">
+                  <div className="book-review__header">
+                    <div className="book-review__user-avatar avatar bg-red-500 text-white">
+                      SK
+                    </div>
+                    <div className="book-review__details-wrapper">
+                      <div className="book-review__username">{review.name}</div>
+                      <div className="book-review__details">
+                        <div className="book-review__user-rating">
+                          <div
+                            className="stars"
+                            style={{
+                              "--rating": review.rating,
+                              // "--star-background": "76DB98",
+                            }}
+                            aria-label="Rating of this product out of 5."
+                          ></div>
+                          {review.rating}
+                        </div>
+                        <div className="book-review__rating-date">
+                          1 month ago
+                        </div>
+                        {/* ! create function to get above time from date: 07-04-2021 */}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="book-review__content">{review.content}</div>
+                </div>
+              ))}
+              <button className="btn btn--dark btn--sm btn--outlined btn-view-all-review">
+                View all reviews
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="home-page-section">
+        <div className="home-page-section__subtitle">Similar Books</div>
+        <div className="home-page-section__content">
+          <ThumbnailView
+            booksData={similarBooksData}
+            maxDisplay={4}
+            maxBooksInRow={4}
+            title={"Similar Books"}
+            seeAllLink={"/frontend-endpoint-that-gives-similar-books"}
+          />
+        </div>
       </div>
     </div>
   );
