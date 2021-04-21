@@ -1,6 +1,6 @@
 import React from "react";
 import Path from "./Path";
-import ClampLines from "react-clamp-lines";
+// import ClampLines from "react-clamp-lines";
 import bookImg1 from "../images/covers/hptps.jpg";
 import ThumbnailView from "./ThumbnailView";
 import { productData as bookData } from "./productData";

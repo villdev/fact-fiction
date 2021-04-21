@@ -305,6 +305,1306 @@ export const productData = [
       },
     ],
   },
+  {
+    id: 6,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 7,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 8,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 9,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 10,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 11,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 12,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 13,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 14,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 15,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 16,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 17,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 18,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 19,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 20,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 21,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 22,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 23,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 24,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 25,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 26,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 27,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 28,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 29,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
+  {
+    id: 30,
+    title: "Harry Potter and the Philosopher's Stone",
+    author: "J.K. Rowling",
+    covers: ["/src/images/covers/hptps.jpg", "/src/images/covers/hptps.jpg"],
+    price: [499, 800],
+    discount: [42, 0],
+    synopsis: [
+      "Escape to Hogwarts with the unmissable series that has sparked a lifelong reading journey for children and families all over the world. The magic starts here.",
+
+      "Harry Potter has never even heard of Hogwarts when the letters start dropping on the doormat at number four, Privet Drive. Addressed in green ink on yellowish parchment with a purple seal, they are swiftly confiscated by his grisly aunt and uncle. Then, on Harry's eleventh birthday, a great beetle-eyed giant of a man called Rubeus Hagrid bursts in with some astonishing news: Harry Potter is a wizard, and he has a place at Hogwarts School of Witchcraft and Wizardry. The magic starts here!",
+
+      "These editions of the classic and internationally bestselling Harry Potter series feature thrilling jacket artwork by award-winning illustrator Jonny Duddle. They are the perfect starting point for anyone who's ready to lose themselves in the greatest children's story of all time.",
+    ],
+    rating: [4.7, 24591],
+    format: ["Paperback", "Hardcover"],
+    pages: 352,
+    language: "English",
+    publishDate: "3 September 2014",
+    publisher: "Bloomsbury Children's Books",
+    isbn10: "9781408855652",
+    isbn13: "978-1408855652",
+    weight: "275g",
+    dimensions: "12.9 x 2.3 x 19.7 cm",
+    genres: ["Fatasy, Fiction", "YA", "Contemporary Fiction"],
+    reviews: [
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "07-04-2021",
+        rating: 4,
+        content:
+          "1Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+      {
+        avatar: "/src/images/avatar.jpeg",
+        name: "Shobhit Kuruvilla",
+        date: "08-04-2021",
+        rating: 4.7,
+        content:
+          "2Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+      },
+    ],
+  },
   // {
   //   title: "Harry Potter and the Philosopher's Stone",
   //   author: "J.K. Rowling",

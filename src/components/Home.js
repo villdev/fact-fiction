@@ -10,7 +10,7 @@ import bookImg1 from "../images/covers/hptps.jpg";
 export default function Home() {
   const trendingBooksData = [...productData];
   const newBooksData = [...productData];
-  const bestsellersBookData = [...productData];
+  const bestsellersBookData = [...productData.slice(0, 5)];
   const singleBannerData = [bannerData[0]];
   console.log(singleBannerData);
   return (
