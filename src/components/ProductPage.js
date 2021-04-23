@@ -80,6 +80,23 @@ export default function ProductPage({ productData }) {
                   )}
                 </div>
               </div>
+              <div className="book-format-wrapper">
+                Format:{" "}
+                <div className="book-formats">
+                  {productData.formats.map((format, index) => (
+                    <span
+                      key={index}
+                      className={
+                        index === 0
+                          ? "book-format book-format--active"
+                          : "book-format"
+                      }
+                    >
+                      {format}
+                    </span>
+                  ))}
+                </div>
+              </div>
               <div className="book-wishlist-wrapper">
                 Wishlist:{" "}
                 <div className="book-wishlist-btn">

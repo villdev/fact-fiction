@@ -1,0 +1,23 @@
+/* price-range */
+.rc-slider-handle {
+  width: 12px;
+  height: 12px;
+  border-radius: 0;
+  border: 1px solid var(--bg);
+}
+.rc-slider-handle:hover {
+  border-color: var(--nav-hover-color);
+}
+.rc-slider-handle-click-focused:focus {
+  border-color: rgba(128, 128, 128, 0.1);
+}
+.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
+  border-color: rgba(128, 128, 128, 0.5);
+  box-shadow: 0 0 0 3px rgba(128, 128, 128, 0.25);
+}
+.rc-slider-handle-1 {
+  background-color: var(--text-light);
+}
+.rc-slider-handle-2 {
+  background-color: var(--text);
+}
