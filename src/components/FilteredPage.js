@@ -117,6 +117,7 @@ export default function FilteredPage({
                   min={0}
                   max={5000}
                   defaultValue={priceRangeValues}
+                  step={100}
                   value={priceRangeValues}
                   onChange={setPriceRange}
                   tipFormatter={(value) => `₹${value}`}
