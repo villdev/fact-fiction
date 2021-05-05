@@ -70,6 +70,12 @@ body {
   color: #fff;
 }
 
+.btn:focus {
+  text-decoration: underline;
+  /* text-decoration-color: currentColor; */
+  /* rgba(31, 41, 55) */
+}
+
 /* container */
 .header-container-75 {
   width: 75%;
@@ -1917,6 +1923,39 @@ footer {
   /* color: var(--text-light); */
   font-size: 0.875rem;
 }
+.btn-agree-review {
+  /* font-size: 0.675rem; */
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-family: var(--font);
+  display: flex;
+  align-items: center;
+  /* border: none; */
+  background-color: var(--bg-card);
+  cursor: pointer;
+  border-radius: var(--btn-border-radius);
+  margin-top: 0.5rem;
+  padding: 0 0 0 0.3rem;
+  outline: none;
+  border: 1px solid var(--bg);
+}
+.btn-agree-review:hover {
+  border-color: var(--border);
+}
+.btn-agree-review:focus {
+  background-color: var(--border);
+}
+.btn-agree-review > svg {
+  fill: var(--border);
+  margin-right: 0.4rem;
+}
+.btn-agree-review > span {
+  margin-left: 0.4rem;
+  /* font-weight: 500; */
+  background-color: #76db98;
+  padding: 0.3rem 0.5rem;
+  border-radius: 0 var(--btn-border-radius) var(--btn-border-radius) 0;
+}
 
 .btn-view-all-review {
   /* align-self: center; */
@@ -2795,11 +2834,6 @@ footer {
     rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
 }
 
-.btn:focus {
-  text-decoration: underline;
-  /* rgba(31, 41, 55) */
-}
-
 .payment-input__card-number {
   flex-basis: 45%;
 }
@@ -2868,4 +2902,130 @@ footer {
 }
 .order-total__header {
   font-size: 1.2rem;
+}
+
+/* ---------------------login-page----------------------------- */
+
+/* ------------------------------------------------------------------ */
+/* -----------------------password reset----------------------------- */
+
+/* ! change px to rem------------------------------------------------ */
+.user-form-wrapper {
+  width: 320px;
+  font-family: var(--font);
+  position: relative;
+  z-index: 2;
+}
+.user-form-header__title {
+  font-size: 30px;
+  font-weight: 700;
+}
+.user-form-header__desc {
+  /* color: #727883; */
+  color: var(--text-light);
+  line-height: 1.4;
+  font-weight: 400;
+  /* font-size: 15px; */
+}
+.user-form-header {
+  margin-bottom: 16px;
+}
+.user-form label {
+  /* color: #4b4e55; */
+  /* color: var(--text-light); */
+  color: var(--text);
+}
+.user-form input {
+  width: 100%;
+  /* border: 1px solid #b3b8be; */
+  border: 1px solid var(--border);
+  /* border-radius: 4px; */
+  border-radius: calc(var(--btn-border-radius) * 1);
+  padding: 8px 48px 8px 16px;
+  outline: none;
+}
+.user-form input:focus {
+  box-shadow: rgba(255, 255, 255, 0.2) 0px 0px 0px 1px inset,
+    rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+}
+
+.new-password-input-wrapper {
+  position: relative;
+}
+.new-password-input-wrapper img {
+  position: absolute;
+  top: 15%;
+  right: 16px;
+}
+
+/* .new-password-details,
+.confirm-password-details {
+  font-size: 12px;
+  font-weight: 100;
+} */
+.user-form-row__details {
+  font-size: 12px;
+  font-weight: 100;
+  color: var(--text-light);
+}
+
+/* .new-password-wrapper,
+.confirm-password-wrapper {
+  margin-bottom: 16px;
+} */
+.user-form-row {
+  margin-bottom: 16px;
+}
+.confirm-password-wrapper {
+  margin-bottom: 24px;
+}
+
+.btn-user-form {
+  width: 100%;
+  height: 44px;
+  /* border: none; */
+  /* font-weight: 300; */
+  /* font-size; */
+}
+
+/* --------- */
+.login-page-wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+}
+.login-page__col:first-child {
+  flex-basis: 40%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--bg-card); */
+  /* background-color: ; */
+  /* border: 16px solid var(--black-color); */
+  /* border: 6px solid var(--black-color); */
+}
+.pattern {
+  background-image: url("../images/pattern1.jpg");
+  background-position: 27% 50%;
+  position: relative;
+  /* border: 16px solid var(--black-color); */
+  /* border-right: 16px solid var(--black-color); */
+}
+.pattern::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  z-index: 1;
+}
+.ff-pattern {
+  flex-basis: 60%;
+  background-image: url("../images/ffPattern.jpg");
+  background-position: 50% 50%;
+  /* margin: 1rem; */
+  /* border: 16px solid white; */
+  border: 16px solid var(--black-color);
 }

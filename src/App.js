@@ -9,6 +9,7 @@ import FilteredPage from "./components/FilteredPage";
 import CartPage from "./components/CartPage";
 import WishlistPage from "./components/WishlistPage";
 import CheckoutPage from "./components/CheckoutPage";
+import SignupPage from "./components/SignupPage";
 import LoginPage from "./components/LoginPage";
 import Footer from "./components/Footer";
 import { productData } from "./components/productData";
@@ -23,6 +24,7 @@ export default function App() {
       {/* <CartPage /> */}
       {/* <WishlistPage /> */}
       {/* <CheckoutPage /> */}
+      {/* <SignupPage /> */}
       {/* <LoginPage /> */}
       <Footer />
     </div>
