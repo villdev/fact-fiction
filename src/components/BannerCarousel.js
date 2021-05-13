@@ -19,8 +19,8 @@ export default function BannerCarousel({ content }) {
         className={content.length === 1 && "custom-banner"}
       >
         <Slider>
-          {content.map((banner, i) => (
-            <Slide key={i} className="banner-slide" index={i}>
+          {content.map((banner, index) => (
+            <Slide key={banner._id} className="banner-slide" index={index}>
               <Banner bannerContent={banner} />
             </Slide>
           ))}

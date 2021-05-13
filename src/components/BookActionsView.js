@@ -23,9 +23,9 @@ export default function BookActionsView({ cart, wishlist, booksData }) {
       <div className="book-actions-view__content">
         {booksData.map((book) => (
           <ListBookActions
-            key={book.id}
-            cart={cart}
-            wishlist={wishlist}
+            key={book._id}
+            cartVersion={cart}
+            wishlistVersion={wishlist}
             bookData={book}
           />
         ))}

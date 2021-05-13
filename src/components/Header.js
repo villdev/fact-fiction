@@ -1,15 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { useData } from "../context/DataProvider";
 import logo from "../images/fflogo.svg";
 
 export default function Header() {
+  const {
+    state: { genres, cart, wishlist },
+  } = useData();
   return (
     <header>
       <div className="main-header">
         <div className="header-container-75">
           <div className="logo-wrapper">
-            <a href="#">
+            <Link to="/">
               <img className="logo" src={logo} alt="" />
-            </a>
+            </Link>
+            {/* <a href="#">
+              <img className="logo" src={logo} alt="" />
+            </a> */}
           </div>
           {/* <form action="" method="get"></form> */}
           <form className="search-bar-wrapper">
@@ -69,7 +77,8 @@ export default function Header() {
               </svg>
             </div>
             <div className="account">
-              Sign In{" "}
+              {/* Sign In{" "} */}
+              Login{" "}
               {/* <svg
                 className="dropdown-icon"
                 xmlns="http://www.w3.org/2000/svg"
@@ -96,14 +105,18 @@ export default function Header() {
             </div>
             <div className="account-dropdown">
               <div className="sign-in-wrapper">
-                <button className="btn btn--rounded btn--dark btn--sm btn-sign-in">
-                  Sign In
-                </button>
+                <Link className="nav-link" to="/login">
+                  <button className="btn btn--rounded btn--dark btn--sm btn-sign-in">
+                    Login
+                  </button>
+                </Link>
                 <div className="sign-up-wrapper">
                   <div className="sign-up__text">New Customer?</div>
-                  <button className="btn btn--sm btn--rounded btn--link btn-register">
-                    Sign Up
-                  </button>
+                  <Link className="nav-link" to="/signup">
+                    <button className="btn btn--sm btn--rounded btn--link btn-register">
+                      Sign Up
+                    </button>
+                  </Link>
                 </div>
               </div>
               <div className="account-actions-wrapper">
@@ -138,21 +151,24 @@ export default function Header() {
                     </svg>
                     Orders
                   </li>
-                  <li className="account-action">
-                    <svg
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M12.1 18.55L12 18.65L11.89 18.55C7.14 14.24 4 11.39 4 8.5C4 6.5 5.5 5 7.5 5C9.04 5 10.54 6 11.07 7.36H12.93C13.46 6 14.96 5 16.5 5C18.5 5 20 6.5 20 8.5C20 11.39 16.86 14.24 12.1 18.55ZM16.5 3C14.76 3 13.09 3.81 12 5.08C10.91 3.81 9.24 3 7.5 3C4.42 3 2 5.41 2 8.5C2 12.27 5.4 15.36 10.55 20.03L12 21.35L13.45 20.03C18.6 15.36 22 12.27 22 8.5C22 5.41 19.58 3 16.5 3Z"
-                        fill="#333333"
-                      />
-                    </svg>
-                    Wishlist
-                  </li>
+
+                  <Link to="/wishlist" className="nav-link">
+                    <li className="account-action">
+                      <svg
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M12.1 18.55L12 18.65L11.89 18.55C7.14 14.24 4 11.39 4 8.5C4 6.5 5.5 5 7.5 5C9.04 5 10.54 6 11.07 7.36H12.93C13.46 6 14.96 5 16.5 5C18.5 5 20 6.5 20 8.5C20 11.39 16.86 14.24 12.1 18.55ZM16.5 3C14.76 3 13.09 3.81 12 5.08C10.91 3.81 9.24 3 7.5 3C4.42 3 2 5.41 2 8.5C2 12.27 5.4 15.36 10.55 20.03L12 21.35L13.45 20.03C18.6 15.36 22 12.27 22 8.5C22 5.41 19.58 3 16.5 3Z"
+                          fill="#333333"
+                        />
+                      </svg>{" "}
+                      Wishlist
+                    </li>
+                  </Link>
                   <li className="account-action">
                     <svg
                       width="24"
@@ -211,39 +227,50 @@ export default function Header() {
             </div>
           </div>
           <div className="vertical-separator"></div>
-          <div className="cart-wrapper">
-            <div className="cart-icon-wrapper badge-wrapper">
-              <svg
-                aria-hidden="true"
-                className="cart-icon icon-sm"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
-              </svg>
-              <span className="badge badge--sm bg-blue-600 text-white">1</span>
-              {/* <span className="badge bg-gray-300 text-black">1</span> */}
+          <Link to="/cart" className="nav-link">
+            <div className="cart-wrapper">
+              <div className="cart-icon-wrapper badge-wrapper">
+                <svg
+                  aria-hidden="true"
+                  className="cart-icon icon-sm"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                </svg>
+                {cart.items.length > 0 && (
+                  <span className="badge badge--sm bg-blue-600 text-white">
+                    {/* 1 */}
+                    {cart.items.length}
+                  </span>
+                )}
+                {/* <span className="badge bg-gray-300 text-black">1</span> */}
+              </div>
+              {/* Cart - <div className="cart-price">₹1000.00</div> */}
+              Cart -{" "}
+              <div className="cart-price">₹{(+cart.total).toFixed(2)}</div>
             </div>
-            Cart - <div className="cart-price">₹1000.00</div>
-          </div>
+          </Link>
         </div>
       </div>
       <div className="sec-header">
         <nav className="nav header-container-75">
-          <div className="home-btn">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z"
-                fill="#333333"
-              />
-            </svg>
-          </div>
+          <Link to="/" className="nav-link">
+            <div className="home-btn">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 20V14H14V20H19V12H22L12 3L2 12H5V20H10Z"
+                  fill="#333333"
+                />
+              </svg>
+            </div>
+          </Link>
           <ul>
             {/* <li className="nav__item">
               <svg
@@ -273,15 +300,18 @@ export default function Header() {
               </svg>
               <div className="nav-dropdown">
                 <ul>
-                  <li className="nav-dropdown__item">Recent Releases</li>
+                  <Link to="/new" className="nav-link">
+                    <li className="nav-dropdown__item">Recent Releases</li>
+                  </Link>
                   <li className="nav-dropdown__item">Pre-orders</li>
                   <li className="nav-dropdown__item">Coming Soon</li>
                 </ul>
               </div>
             </li>
-            <li className="nav__item">
-              Bestsellers{" "}
-              {/* <svg
+            <Link to="/bestsellers" className="nav-link">
+              <li className="nav__item">
+                Bestsellers{" "}
+                {/* <svg
                 className="dropdown-icon"
                 width="24"
                 height="24"
@@ -291,7 +321,8 @@ export default function Header() {
               >
                 <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" />
               </svg> */}
-            </li>
+              </li>
+            </Link>
             <li className="nav__item">
               Genre{" "}
               <svg
@@ -306,17 +337,25 @@ export default function Header() {
               </svg>
               <div className="nav-dropdown">
                 <ul>
-                  <li className="nav-dropdown__item">Fiction</li>
+                  {/* {console.log(genres)} */}
+                  {genres.map((genre) => (
+                    <li key={genre._id} className="nav-dropdown__item">
+                      {genre.name}
+                    </li>
+                  ))}
+                  {/* <li className="nav-dropdown__item">Fiction</li>
                   <li className="nav-dropdown__item">Non-fiction</li>
                   <li className="nav-dropdown__item">Romance</li>
                   <li className="nav-dropdown__item">
                     Business &#38; Economics
                   </li>
-                  <li className="nav-dropdown__item">Textbooks</li>
+                  <li className="nav-dropdown__item">Textbooks</li> */}
                 </ul>
               </div>
             </li>
-            <li className="nav__item">Trending</li>
+            <Link to="/trending" className="nav-link">
+              <li className="nav__item">Trending</li>
+            </Link>
             <li className="nav__item">Great Deals</li>
             <li className="nav__item">Contact Us</li>
           </ul>
@@ -337,22 +376,29 @@ export default function Header() {
             Gift Cards
           </div>
           <div className="vertical-separator"></div>
-          <div className="wishlist-wrapper">
-            <svg
-              className="wishlist-icon"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"
-                fill="#333333"
-              />
-            </svg>
-            Wishlist - <div className="wishlist-counter"> 0 items</div>
-          </div>
+          <Link to="/wishlist" className="nav-link">
+            <div className="wishlist-wrapper">
+              <svg
+                className="wishlist-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"
+                  fill="#333333"
+                />
+              </svg>
+              {/* Wishlist - <div className="wishlist-counter"> 0 items</div> */}
+              Wishlist -{" "}
+              <div className="wishlist-counter">
+                {" "}
+                {wishlist.items.length} items
+              </div>
+            </div>
+          </Link>
           <div className="vertical-separator"></div>
           <div className="lang-wrapper">
             <svg

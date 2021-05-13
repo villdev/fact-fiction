@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import { Link, useLocation } from "react-router-dom";
 import Path from "./Path";
-import { productData } from "./productData";
 import ThumbnailView from "./ThumbnailView";
 import ClampLines from "react-clamp-lines";
 
@@ -12,15 +13,65 @@ import "../css/customSliderStyle.css";
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
 export default function FilteredPage({
-  trending,
-  newReleases,
-  bestseller,
-  genre,
-  sale,
+  // trending,
+  // newReleases,
+  // bestseller,
+  // genre,
+  // sale,
+  title,
+  link,
+  pathHistory,
 }) {
-  const trendingBooksData = [...productData];
+  const [trendingBooks, setTrendingBooks] = useState([]);
+  // const { search } = useLocation();
+  const query = useQuery();
+  console.log(query);
+  const sortQuery = query.get("sort");
+  const currentPage = query.get("page");
+  const resultsPerPage = query.get("results");
+  // const sortQuery = search ? search.slice(6) : "";
+  // const [sort, setSort] = useState(sortQuery);
+  const [paginationData, setPaginationData] = useState({
+    currentPage: currentPage || 1,
+    results: resultsPerPage || 12,
+    totalResults: 1,
+    sort: sortQuery || "",
+  });
   const [priceRangeValues, setPriceRangeValues] = useState([0, 5000]);
+
+  // const printCurrentQueries = () => {
+  //   const sortQ = `sort${paginationData.sort}`;
+  //   return `?sort=${""}&page=${paginationData.currentPage}&results=${
+  //     paginationData.results
+  //   }`;
+  // };
+  // console.log(printCurrentQueries());
+
+  const getTrendingBooks = async () => {
+    try {
+      const {
+        data: { success, paginatedBooks },
+      } = await axios.get(
+        `http://localhost:3000/books?page=${paginationData.currentPage}&results=${paginationData.results}&sort=${paginationData.sort}`
+      );
+      if (success) {
+        setTrendingBooks([...paginatedBooks.books]);
+        setPaginationData((prevData) => {
+          return {
+            ...prevData,
+            ...paginatedBooks,
+          };
+        });
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const setPriceRange = (sliderValues) => {
     setPriceRangeValues(sliderValues);
   };
@@ -37,9 +88,46 @@ export default function FilteredPage({
       +sliderEvent.target.value.slice(1),
     ]);
   };
+  const changeResultsPerPage = (resultsPerPage) => {
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        results: resultsPerPage,
+        currentPage: 1,
+      };
+    });
+  };
+
+  const updateSort = (newSort) => {
+    // setSort(newSort);
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        currentPage: 1,
+        sort: newSort,
+      };
+    });
+  };
+
+  // useEffect(() => {
+  //   setPaginationData((prevData) => {
+  //     return {
+  //       ...prevData,
+  //       currentPage: 1,
+  //     };
+  //   });
+  //   getTrendingBooks();
+  //   window.scrollTo(0, 0);
+  // }, [sort, getTrendingBooks]);
+
+  useEffect(() => {
+    getTrendingBooks();
+    window.scrollTo(0, 0);
+  }, [paginationData.currentPage, paginationData.sort, paginationData.results]);
   return (
     <div className="filtered-page-wrapper container-75">
-      <Path pathHistory={["Home", "Trending"]} />
+      {/* <Path pathHistory={["Home", "Trending"]} /> */}
+      <Path pathHistory={pathHistory} />
       <div className="filtered-page">
         <div className="filter-section-wrapper">
           {/* <div className="filter-section__header">Filters</div> */}
@@ -303,17 +391,25 @@ export default function FilteredPage({
         </div>
         <div className="filtered-page-section">
           <div className="filtered-page-section__subtitle">
-            Trending
+            {title === "Genre" ? "Fiction" : title}
             <div className="filtered-showing-number-wrapper">
               Showing:{" "}
               <span>
-                {"1"} - {"12"} of {productData.length}
+                {paginationData.results * (paginationData.currentPage - 1) + 1}{" "}
+                -{" "}
+                {paginationData.results * paginationData.currentPage >
+                paginationData.totalResults
+                  ? paginationData.totalResults
+                  : paginationData.results * paginationData.currentPage}{" "}
+                of {paginationData.totalResults}
               </span>
               Products
             </div>
             <div className="filtered-page-max-display-wrapper">
               <div className="filtered-page-max-display">
-                {"12"}
+                {paginationData.results < 10
+                  ? `0${paginationData.results}`
+                  : paginationData.results}
                 <svg
                   className="dropdown-icon"
                   width="24"
@@ -325,10 +421,74 @@ export default function FilteredPage({
                   <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" />
                 </svg>{" "}
                 <div className="max-display-dropdown">
-                  <div className="max-display-dropdown__item">3</div>
-                  <div className="max-display-dropdown__item">12</div>
-                  <div className="max-display-dropdown__item">24</div>
-                  <div className="max-display-dropdown__item">48</div>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${
+                        paginationData.sort
+                      }&page=${1}&results=${3}`,
+                    }}
+                    className="nav-link"
+                    onClick={() => changeResultsPerPage(3)}
+                  >
+                    <div
+                      className="max-display-dropdown__item"
+                      // onClick={() => changeResultsPerPage(3)}
+                    >
+                      3
+                    </div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${
+                        paginationData.sort
+                      }&page=${1}&results=${6}`,
+                    }}
+                    className="nav-link"
+                    onClick={() => changeResultsPerPage(6)}
+                  >
+                    <div
+                      className="max-display-dropdown__item"
+                      // onClick={() => changeResultsPerPage(6)}
+                    >
+                      6
+                    </div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${
+                        paginationData.sort
+                      }&page=${1}&results=${12}`,
+                    }}
+                    className="nav-link"
+                    onClick={() => changeResultsPerPage(12)}
+                  >
+                    <div
+                      className="max-display-dropdown__item"
+                      // onClick={() => changeResultsPerPage(12)}
+                    >
+                      12
+                    </div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${
+                        paginationData.sort
+                      }&page=${1}&results=${24}`,
+                    }}
+                    className="nav-link"
+                    onClick={() => changeResultsPerPage(24)}
+                  >
+                    <div
+                      className="max-display-dropdown__item"
+                      // onClick={() => changeResultsPerPage(24)}
+                    >
+                      24
+                    </div>
+                  </Link>
                 </div>
               </div>
               <span>/ per page </span>
@@ -398,7 +558,12 @@ export default function FilteredPage({
             </svg>
             <span>Sort By - </span>
             <div className="filtered-page-sort">
-              {"Price High to Low"}{" "}
+              {/* {"Price High to Low"} */}
+              {paginationData.sort === "" && "Relevance"}
+              {paginationData.sort === "low-high" && "Price Low to High"}
+              {paginationData.sort === "high-low" && "Price High to Low"}
+              {paginationData.sort === "date" && "Publication Date"}
+              {paginationData.sort === "review" && "Avg. Customer Review"}
               <svg
                 className="dropdown-icon"
                 width="24"
@@ -410,22 +575,90 @@ export default function FilteredPage({
                 <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" />
               </svg>
               <div className="sort-dropdown">
-                <div className="sort-dropdown__item">Relevance</div>
-                <div className="sort-dropdown__item">Price High to Low</div>
-                <div className="sort-dropdown__item">Price Low to High</div>
-                <div className="sort-dropdown__item">Avg. Customer Review</div>
-                <div className="sort-dropdown__item">Publication Date</div>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    search: `?sort=${""}&page=${1}&results=${
+                      paginationData.results
+                    }`,
+                  }}
+                  className="nav-link"
+                  onClick={() => updateSort("")}
+                >
+                  {" "}
+                  <div className="sort-dropdown__item">Relevance</div>
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    // search: "?sort=high-low",
+                    search: `?sort=high-low&page=${1}&results=${
+                      paginationData.results
+                    }`,
+                  }}
+                  className="nav-link"
+                  onClick={() => updateSort("high-low")}
+                >
+                  {" "}
+                  <div className="sort-dropdown__item">Price High to Low</div>
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    // search: "?sort=low-high",
+                    search: `?sort=low-high&page=${1}&results=${
+                      paginationData.results
+                    }`,
+                  }}
+                  className="nav-link"
+                  onClick={() => updateSort("low-high")}
+                >
+                  {" "}
+                  <div className="sort-dropdown__item">Price Low to High</div>
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    // search: "?sort=review",
+                    search: `?sort=review&page=${1}&results=${
+                      paginationData.results
+                    }`,
+                  }}
+                  className="nav-link"
+                  onClick={() => updateSort("review")}
+                >
+                  {" "}
+                  <div className="sort-dropdown__item">
+                    Avg. Customer Review
+                  </div>
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    // search: "?sort=date",
+                    search: `?sort=date&page=${1}&results=${
+                      paginationData.results
+                    }`,
+                  }}
+                  className="nav-link"
+                  onClick={() => updateSort("date")}
+                >
+                  {" "}
+                  <div className="sort-dropdown__item">Publication Date</div>
+                </Link>
               </div>
             </div>
           </div>
           <div className="filtered-page-section__content">
             <ThumbnailView
-              booksData={trendingBooksData}
-              maxDisplay={12}
+              // booksData={trendingBooksData}
+              booksData={trendingBooks}
+              // maxDisplay={6}
               maxBooksInRow={3}
               title={"Trending"}
               // seeAllLink={"/frontend-endpoint-that-gives-trneding-books"}
-              paginate={true}
+              paginationData={paginationData}
+              setPaginationData={setPaginationData}
             />
           </div>
         </div>
