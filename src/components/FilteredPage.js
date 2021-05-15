@@ -45,27 +45,9 @@ export default function FilteredPage({
   const genreQuery = query.getAll("genre");
   const searchQuery =
     useLocation().pathname === "/search" ? query.get("s") : "";
-
-  console.log(searchQuery);
   // const discountQuery = query.get("discount");
   const discountQuery = "";
-  // const [paginationData, setPaginationData] = useState({
-  //   currentPage: 1,
-  //   results: 12,
-  //   totalResults: 1,
-  //   sort: "",
-  // });
-  // const [priceRangeValues, setPriceRangeValues] = useState([0, 5000]);
-  // const [filters, setFilters] = useState({
-  //   priceRange: [0, 5000],
-  //   genres: [],
-  //   // genres: [],
-  //   rating: 0,
-  //   language: "",
-  //   discount: 0,
-  //   excludeOutOfStock: false,
-  //   format: "Paperback",
-  // });
+
   const [paginationData, setPaginationData] = useState({
     currentPage: parseInt(currentPage) || 1,
     results: parseInt(resultsPerPage) || 12,
@@ -87,41 +69,6 @@ export default function FilteredPage({
     format: "Paperback",
     searchQuery: searchQuery || "",
   });
-  console.log(filters.searchQuery);
-  // const [paginationData, setPaginationData] = useState({
-  //   currentPage: parseInt(currentPage) || 1,
-  //   results: parseInt(resultsPerPage) || 12,
-  //   totalResults: 1,
-  //   sort: sortQuery || "",
-  // });
-  // const [priceRangeValues, setPriceRangeValues] = useState([
-  //   parseInt(priceMin) || 0,
-  //   parseInt(priceMax) || 5000,
-  // ]);
-  // const [filters, setFilters] = useState({
-  //   priceRange: [priceRangeValues[0], priceRangeValues[1]],
-  //   genres: genreQuery || [],
-  //   // genres: [],
-  //   rating: 0,
-  //   language: "",
-  //   discount: parseInt(discountQuery) || 0,
-  //   excludeOutOfStock: false,
-  //   format: "Paperback",
-  // });
-  // const [priceRangeValues, setPriceRangeValues] = useState([
-  //   parseInt(priceMin) || 0,
-  //   parseInt(priceMax) || 5000,
-  // ]);
-  // const [filters, setFilters] = useState({
-  //   priceRange: [priceRangeValues[0], priceRangeValues[1]],
-  //   genres: genreQuery || [],
-  //   // genres: [],
-  //   rating: 0,
-  //   language: "",
-  //   discount: parseInt(discountQuery) || 0,
-  //   excludeOutOfStock: false,
-  //   format: "Paperback",
-  // });
 
   const getGenreSearchParams = (changedGenre) => {
     let genreSearchParams = "";
@@ -130,7 +77,6 @@ export default function FilteredPage({
     );
     if (changedGenre === "") {
       filters.genres.forEach((genre) => {
-        // genreSearchParams = genreSearchParams + `&genre=${genre}`;
         genreSearchParams =
           genreSearchParams + `&genre=${encodeURIComponent(genre)}`;
       });
@@ -138,7 +84,6 @@ export default function FilteredPage({
     }
     if (changedGenreIndex === -1) {
       filters.genres.forEach((genre) => {
-        // genreSearchParams = genreSearchParams + `&genre=${genre}`;
         genreSearchParams =
           genreSearchParams + `&genre=${encodeURIComponent(genre)}`;
       });
@@ -146,7 +91,6 @@ export default function FilteredPage({
     } else {
       filters.genres.forEach((genre) => {
         if (genre !== changedGenre) {
-          // genreSearchParams = genreSearchParams + `&genre=${genre}`;
           genreSearchParams =
             genreSearchParams + `&genre=${encodeURIComponent(genre)}`;
         }
@@ -491,16 +435,15 @@ export default function FilteredPage({
                     {filters.genres.map((genre, index) => (
                       <div key={index} className="filter-applied__details">
                         <Link
-                          // ! change price min and max------------------------------------------
                           to={{
                             pathname: `/${title.toLowerCase().split(" ")[0]}`,
                             search: `?sort=${
                               paginationData.sort
                             }&page=${1}&results=${
                               paginationData.results
-                            }&priceMin=0&priceMax=5000${getGenreSearchParams(
-                              genre
-                            )}`,
+                            }&priceMin=${filters.priceRange[0]}&priceMax=${
+                              filters.priceRange[1]
+                            }${getGenreSearchParams(genre)}`,
                           }}
                           replace={true}
                           // className="nav-link"
@@ -724,41 +667,6 @@ export default function FilteredPage({
                     </div>
                   </Link>
                 ))}
-
-                {/* <div className="filter__content-item">
-                  <label className="input-checkbox">
-                    <input type="checkbox" checked={true} />
-                    <span>Fiction</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" />
-                    <span>Non-Fiction</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" checked={true} />
-                    <span>Romance</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" />
-                    <span>Business & Economics</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" />
-                    <span>Textbooks</span>
-                  </label>
-                </div> */}
               </div>
             </div>
             <div className="filter-wrapper">
@@ -1256,8 +1164,7 @@ export default function FilteredPage({
               booksData={trendingBooks}
               // maxDisplay={6}
               maxBooksInRow={3}
-              title={"Trending"}
-              // seeAllLink={"/frontend-endpoint-that-gives-trneding-books"}
+              title={title}
               paginationData={paginationData}
               setPaginationData={setPaginationData}
               filters={filters}

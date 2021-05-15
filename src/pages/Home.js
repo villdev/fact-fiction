@@ -7,14 +7,8 @@ import ClampLines from "react-clamp-lines";
 import BannerCarousel from "../components/BannerCarousel";
 import { useData } from "../context/DataProvider";
 import ThumbnailView from "../components/ThumbnailView";
-import { productData } from "../components/productData";
-
-import bookImg1 from "../images/covers/hptps.jpg";
 
 export default function Home() {
-  const trendingBooksData = [...productData];
-  const newBooksData = [...productData];
-  const bestsellersBookData = [...productData.slice(0, 5)];
   const {
     state: { banners },
     dispatch: dataDispatch,
@@ -88,7 +82,8 @@ export default function Home() {
     <>
       <Header />
       <div className="home-page-wrapper container-75">
-        {banners.length > 0 && <BannerCarousel content={banners} />}
+        {/* {banners.length > 0 && <BannerCarousel content={banners} />} */}
+        <BannerCarousel content={banners} />
         <div className="featured-cards-wrapper">
           <div className="featured-card">
             <svg

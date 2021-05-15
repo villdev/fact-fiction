@@ -87,10 +87,10 @@ export default function Signup() {
         <div className="user-form-wrapper">
           <div className="user-form-header">
             <div className="user-form-header__title">Create a new account</div>
-            <div className="user-form-header__desc">
+            {/* <div className="user-form-header__desc">
               Make a new account to avail all features of the site which will
               make your life easier.
-            </div>
+            </div> */}
           </div>
 
           <form className="user-form">

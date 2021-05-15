@@ -109,9 +109,12 @@ export default function App() {
   };
 
   useEffect(() => {
-    getBanners();
-    getGenres();
-    getUserDetails();
+    if (banners.length === 0) {
+      console.log("test");
+      getBanners();
+      getGenres();
+      getUserDetails();
+    }
     // window.scrollTo(0, 0);
   }, []);
   return (
