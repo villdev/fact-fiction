@@ -161,7 +161,7 @@ export default function FilteredPage({
       const {
         data: { success, paginatedBooks },
       } = await axios.get(
-        `http://localhost:3000/books?priceMin=${
+        `https://fact-fiction.herokuapp.com/books?priceMin=${
           filters.priceRange[0]
         }&priceMax=${filters.priceRange[1]}&page=${
           paginationData.currentPage

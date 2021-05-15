@@ -32,7 +32,9 @@ export default function Home() {
           success,
           paginatedBooks: { books },
         },
-      } = await axios.get("http://localhost:3000/books?page=3&results=4");
+      } = await axios.get(
+        "https://fact-fiction.herokuapp.com/books?page=3&results=4"
+      );
       if (success) {
         setNewBooks([...books]);
       }
@@ -47,7 +49,9 @@ export default function Home() {
           success,
           paginatedBooks: { books },
         },
-      } = await axios.get("http://localhost:3000/books?page=1&results=4");
+      } = await axios.get(
+        "https://fact-fiction.herokuapp.com/books?page=1&results=4"
+      );
       if (success) {
         setTrendingBooks([...books]);
       }
@@ -62,7 +66,9 @@ export default function Home() {
           success,
           paginatedBooks: { books },
         },
-      } = await axios.get("http://localhost:3000/books?page=2&results=5");
+      } = await axios.get(
+        "https://fact-fiction.herokuapp.com/books?page=2&results=5"
+      );
       if (success) {
         setBestsellerBooks([...books]);
         dataDispatch({ type: "HIDE_LOADER" });

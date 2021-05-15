@@ -60,7 +60,7 @@ export default function Book() {
         quantity: modifiedQuantity,
       };
       axios
-        .post(`http://localhost:3000/carts/${cart.id}`, postBody)
+        .post(`https://fact-fiction.herokuapp.com/carts/${cart.id}`, postBody)
         .then(({ data: { success, cart, message } }) => {
           dataDispatch({
             type: "UPDATE_CART",
@@ -98,7 +98,10 @@ export default function Book() {
         format: "paperback",
       };
       axios
-        .post(`http://localhost:3000/wishlists/${wishlist.id}`, postBody)
+        .post(
+          `https://fact-fiction.herokuapp.com/wishlists/${wishlist.id}`,
+          postBody
+        )
         .then(({ data: { success, wishlist, message } }) => {
           dataDispatch({ type: "UPDATE_WISHLIST", payload: wishlist.items });
           if (showNotification) {
@@ -120,7 +123,7 @@ export default function Book() {
       dataDispatch({ type: "SHOW_LOADER" });
       const {
         data: { success, book: currentBook },
-      } = await axios.get(`http://localhost:3000/books/${bookId}`);
+      } = await axios.get(`https://fact-fiction.herokuapp.com/books/${bookId}`);
       if (success) {
         setBook(currentBook);
       }
@@ -136,7 +139,9 @@ export default function Book() {
           success,
           paginatedBooks: { books },
         },
-      } = await axios.get("http://localhost:3000/books?page=2&results=8");
+      } = await axios.get(
+        "https://fact-fiction.herokuapp.com/books?page=2&results=8"
+      );
       if (success) {
         setSimilarBooks([...books]);
         dataDispatch({ type: "HIDE_LOADER" });

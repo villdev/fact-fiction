@@ -46,7 +46,7 @@ export default function App() {
       if (banners.length === 0) {
         const {
           data: { success, banners: allBanners },
-        } = await axios.get("http://localhost:3000/banners");
+        } = await axios.get("https://fact-fiction.herokuapp.com/banners");
         // const {
         //   data: { success, banners: allBanners },
         // } = await axiosInstance.get("/banners");
@@ -66,7 +66,7 @@ export default function App() {
       if (genres.length === 0) {
         const {
           data: { success, genres: allGenres },
-        } = await axios.get("http://localhost:3000/genres");
+        } = await axios.get("https://fact-fiction.herokuapp.com/genres");
         // const {
         //   data: { success, genres: allGenres },
         // } = await axiosInstance.get("/genres");
@@ -85,7 +85,9 @@ export default function App() {
     try {
       const {
         data: { success, user: currentUser },
-      } = await axios.get(`http://localhost:3000/users/${tempUserId}`);
+      } = await axios.get(
+        `https://fact-fiction.herokuapp.com/users/${tempUserId}`
+      );
       if (success) {
         authDispatch({
           type: "STORE_USER_DETAILS",

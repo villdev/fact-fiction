@@ -35,7 +35,7 @@ export default function ListBookActions({
         quantity: modifiedQuantity,
       };
       axios
-        .post(`http://localhost:3000/carts/${cart.id}`, postBody)
+        .post(`https://fact-fiction.herokuapp.com/carts/${cart.id}`, postBody)
         .then(({ data: { success, cart, message } }) => {
           dataDispatch({
             type: "UPDATE_CART",
@@ -88,7 +88,10 @@ export default function ListBookActions({
         format: "paperback",
       };
       axios
-        .post(`http://localhost:3000/wishlists/${wishlist.id}`, postBody)
+        .post(
+          `https://fact-fiction.herokuapp.com/wishlists/${wishlist.id}`,
+          postBody
+        )
         .then(({ data: { success, wishlist, message } }) => {
           dataDispatch({ type: "UPDATE_WISHLIST", payload: wishlist.items });
           if (showNotification) {
