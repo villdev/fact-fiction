@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useLocation } from "react-router-dom";
+import { useData } from "../context/DataProvider";
 import Path from "./Path";
 import ThumbnailView from "./ThumbnailView";
 import ClampLines from "react-clamp-lines";
@@ -27,37 +28,148 @@ export default function FilteredPage({
   link,
   pathHistory,
 }) {
+  const {
+    state: { genres },
+    dispatch: dataDispatch,
+  } = useData();
   const [trendingBooks, setTrendingBooks] = useState([]);
-  // const { search } = useLocation();
-  const query = useQuery();
-  console.log(query);
+  const [query] = useState(useQuery());
+  // const [searchParams] = useState(useLocation().search);
+  // console.log(useLocation());
+  // const query = useQuery();
   const sortQuery = query.get("sort");
   const currentPage = query.get("page");
   const resultsPerPage = query.get("results");
-  // const sortQuery = search ? search.slice(6) : "";
-  // const [sort, setSort] = useState(sortQuery);
+  const priceMin = query.get("priceMin");
+  const priceMax = query.get("priceMax");
+  const genreQuery = query.getAll("genre");
+  const searchQuery =
+    useLocation().pathname === "/search" ? query.get("s") : "";
+
+  console.log(searchQuery);
+  // const discountQuery = query.get("discount");
+  const discountQuery = "";
+  // const [paginationData, setPaginationData] = useState({
+  //   currentPage: 1,
+  //   results: 12,
+  //   totalResults: 1,
+  //   sort: "",
+  // });
+  // const [priceRangeValues, setPriceRangeValues] = useState([0, 5000]);
+  // const [filters, setFilters] = useState({
+  //   priceRange: [0, 5000],
+  //   genres: [],
+  //   // genres: [],
+  //   rating: 0,
+  //   language: "",
+  //   discount: 0,
+  //   excludeOutOfStock: false,
+  //   format: "Paperback",
+  // });
   const [paginationData, setPaginationData] = useState({
-    currentPage: currentPage || 1,
-    results: resultsPerPage || 12,
+    currentPage: parseInt(currentPage) || 1,
+    results: parseInt(resultsPerPage) || 12,
     totalResults: 1,
     sort: sortQuery || "",
   });
-  const [priceRangeValues, setPriceRangeValues] = useState([0, 5000]);
+  const [priceRangeValues, setPriceRangeValues] = useState([
+    parseInt(priceMin) || 0,
+    parseInt(priceMax) || 5000,
+  ]);
+  const [filters, setFilters] = useState({
+    priceRange: [priceRangeValues[0], priceRangeValues[1]],
+    genres: genreQuery || [],
+    // genres: [],
+    rating: 0,
+    language: "",
+    discount: 0,
+    excludeOutOfStock: false,
+    format: "Paperback",
+    searchQuery: searchQuery || "",
+  });
+  console.log(filters.searchQuery);
+  // const [paginationData, setPaginationData] = useState({
+  //   currentPage: parseInt(currentPage) || 1,
+  //   results: parseInt(resultsPerPage) || 12,
+  //   totalResults: 1,
+  //   sort: sortQuery || "",
+  // });
+  // const [priceRangeValues, setPriceRangeValues] = useState([
+  //   parseInt(priceMin) || 0,
+  //   parseInt(priceMax) || 5000,
+  // ]);
+  // const [filters, setFilters] = useState({
+  //   priceRange: [priceRangeValues[0], priceRangeValues[1]],
+  //   genres: genreQuery || [],
+  //   // genres: [],
+  //   rating: 0,
+  //   language: "",
+  //   discount: parseInt(discountQuery) || 0,
+  //   excludeOutOfStock: false,
+  //   format: "Paperback",
+  // });
+  // const [priceRangeValues, setPriceRangeValues] = useState([
+  //   parseInt(priceMin) || 0,
+  //   parseInt(priceMax) || 5000,
+  // ]);
+  // const [filters, setFilters] = useState({
+  //   priceRange: [priceRangeValues[0], priceRangeValues[1]],
+  //   genres: genreQuery || [],
+  //   // genres: [],
+  //   rating: 0,
+  //   language: "",
+  //   discount: parseInt(discountQuery) || 0,
+  //   excludeOutOfStock: false,
+  //   format: "Paperback",
+  // });
 
-  // const printCurrentQueries = () => {
-  //   const sortQ = `sort${paginationData.sort}`;
-  //   return `?sort=${""}&page=${paginationData.currentPage}&results=${
-  //     paginationData.results
-  //   }`;
-  // };
-  // console.log(printCurrentQueries());
+  const getGenreSearchParams = (changedGenre) => {
+    let genreSearchParams = "";
+    const changedGenreIndex = filters.genres.findIndex(
+      (appliedGenre) => appliedGenre === changedGenre
+    );
+    if (changedGenre === "") {
+      filters.genres.forEach((genre) => {
+        // genreSearchParams = genreSearchParams + `&genre=${genre}`;
+        genreSearchParams =
+          genreSearchParams + `&genre=${encodeURIComponent(genre)}`;
+      });
+      return genreSearchParams;
+    }
+    if (changedGenreIndex === -1) {
+      filters.genres.forEach((genre) => {
+        // genreSearchParams = genreSearchParams + `&genre=${genre}`;
+        genreSearchParams =
+          genreSearchParams + `&genre=${encodeURIComponent(genre)}`;
+      });
+      return genreSearchParams + `&genre=${encodeURIComponent(changedGenre)}`;
+    } else {
+      filters.genres.forEach((genre) => {
+        if (genre !== changedGenre) {
+          // genreSearchParams = genreSearchParams + `&genre=${genre}`;
+          genreSearchParams =
+            genreSearchParams + `&genre=${encodeURIComponent(genre)}`;
+        }
+      });
+      return genreSearchParams;
+    }
+  };
 
-  const getTrendingBooks = async () => {
+  const getBooks = async () => {
     try {
+      dataDispatch({ type: "SHOW_LOADER" });
       const {
         data: { success, paginatedBooks },
       } = await axios.get(
-        `http://localhost:3000/books?page=${paginationData.currentPage}&results=${paginationData.results}&sort=${paginationData.sort}`
+        `http://localhost:3000/books?priceMin=${
+          filters.priceRange[0]
+        }&priceMax=${filters.priceRange[1]}&page=${
+          paginationData.currentPage
+        }&results=${paginationData.results}&sort=${
+          paginationData.sort
+        }${getGenreSearchParams("")}&discount=${filters.discount}&s=${
+          filters.searchQuery
+        }`
       );
       if (success) {
         setTrendingBooks([...paginatedBooks.books]);
@@ -67,6 +179,7 @@ export default function FilteredPage({
             ...paginatedBooks,
           };
         });
+        dataDispatch({ type: "HIDE_LOADER" });
       }
     } catch (error) {
       console.error(error);
@@ -75,19 +188,19 @@ export default function FilteredPage({
   const setPriceRange = (sliderValues) => {
     setPriceRangeValues(sliderValues);
   };
-  const setMinPriceRange = (sliderEvent) => {
-    console.log(sliderEvent);
-    setPriceRangeValues((prevValues) => [
-      +sliderEvent.target.value.slice(1),
-      prevValues[1],
-    ]);
-  };
-  const setMaxPriceRange = (sliderEvent) => {
-    setPriceRangeValues((prevValues) => [
-      prevValues[0],
-      +sliderEvent.target.value.slice(1),
-    ]);
-  };
+  // const setMinPriceRange = (sliderEvent) => {
+  //   console.log(sliderEvent);
+  //   setPriceRangeValues((prevValues) => [
+  //     +sliderEvent.target.value.slice(1),
+  //     prevValues[1],
+  //   ]);
+  // };
+  // const setMaxPriceRange = (sliderEvent) => {
+  //   setPriceRangeValues((prevValues) => [
+  //     prevValues[0],
+  //     +sliderEvent.target.value.slice(1),
+  //   ]);
+  // };
   const changeResultsPerPage = (resultsPerPage) => {
     setPaginationData((prevData) => {
       return {
@@ -104,26 +217,165 @@ export default function FilteredPage({
       return {
         ...prevData,
         currentPage: 1,
+        previous: "",
         sort: newSort,
       };
     });
   };
 
-  // useEffect(() => {
-  //   setPaginationData((prevData) => {
-  //     return {
-  //       ...prevData,
-  //       currentPage: 1,
-  //     };
-  //   });
-  //   getTrendingBooks();
-  //   window.scrollTo(0, 0);
-  // }, [sort, getTrendingBooks]);
+  const filterBasedOnRange = () => {
+    // setPriceRange([0, 5000]);
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        currentPage: 1,
+      };
+    });
+    setFilters((prevFilters) => {
+      return {
+        ...prevFilters,
+        priceRange: [priceRangeValues[0], priceRangeValues[1]],
+      };
+    });
+  };
+  const resetPriceRange = () => {
+    setPriceRange([0, 5000]);
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        currentPage: 1,
+      };
+    });
+    setFilters((prevFilters) => {
+      return {
+        ...prevFilters,
+        priceRange: [0, 5000],
+      };
+    });
+  };
+
+  const resetSearchQuery = () => {
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        currentPage: 1,
+      };
+    });
+    setFilters((prevFilters) => {
+      return {
+        ...prevFilters,
+        searchQuery: "",
+      };
+    });
+  };
+
+  const toggleGenre = (genre) => {
+    const appliedGenreIndex = filters.genres.findIndex(
+      (appliedGenre) => appliedGenre === genre
+    );
+    if (appliedGenreIndex === -1) {
+      setFilters((prevFilters) => {
+        return {
+          ...prevFilters,
+          genres: [...prevFilters.genres, genre],
+        };
+      });
+    } else {
+      setFilters((prevFilters) => {
+        return {
+          ...prevFilters,
+          genres: [
+            ...prevFilters.genres.filter(
+              (appliedGenre) => appliedGenre !== genre
+            ),
+          ],
+        };
+      });
+    }
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        currentPage: 1,
+      };
+    });
+  };
+
+  const toggleDiscount = (discountValue) => {
+    if (filters.discount === discountValue) {
+      setFilters((prevFilters) => {
+        return {
+          ...prevFilters,
+          discount: 0,
+        };
+      });
+    } else {
+      setFilters((prevFilters) => {
+        return {
+          ...prevFilters,
+          discount: discountValue,
+        };
+      });
+    }
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        currentPage: 1,
+      };
+    });
+  };
+
+  const resetFilters = () => {
+    setPriceRange([0, 5000]);
+    setPaginationData((prevData) => {
+      return {
+        ...prevData,
+        currentPage: 1,
+      };
+    });
+    setFilters((prevFilters) => {
+      return {
+        ...prevFilters,
+        priceRange: [0, 5000],
+        genres: [],
+      };
+    });
+  };
 
   useEffect(() => {
-    getTrendingBooks();
+    getBooks();
     window.scrollTo(0, 0);
-  }, [paginationData.currentPage, paginationData.sort, paginationData.results]);
+  }, [
+    paginationData.currentPage,
+    paginationData.sort,
+    paginationData.results,
+    filters,
+  ]);
+
+  useEffect(() => {
+    setPaginationData({
+      currentPage: parseInt(currentPage) || 1,
+      results: parseInt(resultsPerPage) || 12,
+      totalResults: 1,
+      sort: sortQuery || "",
+    });
+    setPriceRangeValues([parseInt(priceMin) || 0, parseInt(priceMax) || 5000]);
+    setFilters({
+      // priceRange: [priceRangeValues[0], priceRangeValues[1]],
+      priceRange: [
+        parseInt(priceMin) || priceRangeValues[0],
+        parseInt(priceMax) || priceRangeValues[1],
+      ],
+      genres: genreQuery || [],
+      rating: 0,
+      language: "",
+      discount: parseInt(discountQuery) || 0,
+      excludeOutOfStock: false,
+      // format: "Paperback",
+      format: "",
+      searchQuery: searchQuery || "",
+    });
+  }, [query]);
+
   return (
     <div className="filtered-page-wrapper container-75">
       {/* <Path pathHistory={["Home", "Trending"]} /> */}
@@ -132,48 +384,223 @@ export default function FilteredPage({
         <div className="filter-section-wrapper">
           {/* <div className="filter-section__header">Filters</div> */}
           <div className="filters-reset-wrapper">
-            <div className="filters-reset-btn">Reset All Filters</div>
+            {/* <div className="filter-section__header">Filters</div> */}
+            <Link
+              to={{
+                pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                search: `?sort=${paginationData.sort}&page=${1}&results=${
+                  paginationData.results
+                }${getGenreSearchParams("")}`,
+              }}
+              replace={true}
+              className="filters-reset-btn--link"
+              onClick={resetFilters}
+            >
+              <div className="filters-reset-btn">Reset All Filters</div>
+            </Link>
             <div className="filters-applied-wrapper">
-              <div className="filter-applied">
-                <div className="filter-applied__header">Category:</div>
-                <div className="filter-applied__content">
-                  <div className="filter-applied__details">
-                    <div className="remove-filter-applied">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+              {filters.searchQuery !== "" && (
+                <div className="filter-applied">
+                  <div className="filter-applied__header">Search:</div>
+                  <div className="filter-applied__content">
+                    <div className="filter-applied__details">
+                      <Link
+                        to={{
+                          pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                          search: `?sort=${
+                            paginationData.sort
+                          }&page=${1}&results=${
+                            paginationData.results
+                          }&priceMin=0&priceMax=5000${getGenreSearchParams(
+                            ""
+                          )}`,
+                        }}
+                        replace={true}
+                        // className="nav-link"
+                        // key={genre._id}
+                        onClick={resetSearchQuery}
                       >
-                        <path
-                          d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                          // fill="#333333"
-                        />
-                      </svg>
+                        <div className="remove-filter-applied">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                              // fill="#333333"
+                            />
+                          </svg>
+                        </div>
+                      </Link>
+                      {filters.searchQuery}
                     </div>
-                    Fiction
-                  </div>
-                  <div className="filter-applied__details">
-                    <div className="remove-filter-applied">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                          // fill="#333333"
-                        />
-                      </svg>
-                    </div>
-                    Romance
                   </div>
                 </div>
-              </div>
-              <div className="filter-applied">
+              )}
+              {!(
+                filters.priceRange[0] === 0 && filters.priceRange[1] === 5000
+              ) && (
+                <div className="filter-applied">
+                  <div className="filter-applied__header">Price Range:</div>
+                  <div className="filter-applied__content">
+                    <div className="filter-applied__details">
+                      <Link
+                        to={{
+                          pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                          search: `?sort=${
+                            paginationData.sort
+                          }&page=${1}&results=${
+                            paginationData.results
+                          }&priceMin=0&priceMax=5000${getGenreSearchParams(
+                            ""
+                          )}`,
+                        }}
+                        replace={true}
+                        // className="nav-link"
+                        // key={genre._id}
+                        onClick={() => resetPriceRange()}
+                      >
+                        <div className="remove-filter-applied">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                              // fill="#333333"
+                            />
+                          </svg>
+                        </div>
+                      </Link>
+                      ₹{filters.priceRange[0]} - ₹{filters.priceRange[1]}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {filters.genres[0] && (
+                <div className="filter-applied">
+                  <div className="filter-applied__header">Genre:</div>
+                  <div className="filter-applied__content">
+                    {filters.genres.map((genre, index) => (
+                      <div key={index} className="filter-applied__details">
+                        <Link
+                          // ! change price min and max------------------------------------------
+                          to={{
+                            pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                            search: `?sort=${
+                              paginationData.sort
+                            }&page=${1}&results=${
+                              paginationData.results
+                            }&priceMin=0&priceMax=5000${getGenreSearchParams(
+                              genre
+                            )}`,
+                          }}
+                          replace={true}
+                          // className="nav-link"
+                          // key={genre._id}
+                          onClick={() => toggleGenre(genre)}
+                        >
+                          <div className="remove-filter-applied">
+                            <svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                                // fill="#333333"
+                              />
+                            </svg>
+                          </div>
+                        </Link>
+                        {genre}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {filters.language !== "" && (
+                <div className="filter-applied">
+                  <div className="filter-applied__header">Language:</div>
+                  <div className="filter-applied__content">
+                    <div className="filter-applied__details">
+                      <div className="remove-filter-applied">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                            // fill="#333333"
+                          />
+                        </svg>
+                      </div>
+                      {filters.language}
+                    </div>
+                  </div>
+                </div>
+              )}
+              {filters.discount !== 0 && (
+                <div className="filter-applied">
+                  <div className="filter-applied__header">Discount:</div>
+                  <div className="filter-applied__content">
+                    <div className="filter-applied__details">
+                      <div className="remove-filter-applied">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                            // fill="#333333"
+                          />
+                        </svg>
+                      </div>
+                      {filters.discount}% or more
+                    </div>
+                  </div>
+                </div>
+              )}
+              {filters.format !== "" && (
+                <div className="filter-applied">
+                  <div className="filter-applied__header">Format:</div>
+                  <div className="filter-applied__content">
+                    <div className="filter-applied__details">
+                      <div className="remove-filter-applied">
+                        <svg
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                            // fill="#333333"
+                          />
+                        </svg>
+                      </div>
+                      {filters.format}
+                    </div>
+                  </div>
+                </div>
+              )}
+              {/* <div className="filter-applied">
                 <div className="filter-applied__header">Format:</div>
                 <div className="filter-applied__content">
                   <div className="filter-applied__details">
@@ -194,7 +621,7 @@ export default function FilteredPage({
                     Paperback
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="filters-wrapper">
@@ -238,16 +665,67 @@ export default function FilteredPage({
                     <span className="range-separator"></span>
                     <span className="range-value">₹{priceRangeValues[1]}</span>
                   </div>
-                  <button className="btn btn--black btn--outlined btn--sm btn-set-price-range">
-                    Go
-                  </button>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${paginationData.sort}&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${priceRangeValues[0]}&priceMax=${
+                        priceRangeValues[1]
+                      }${getGenreSearchParams("")}`,
+                    }}
+                    replace={true}
+                    // className="nav-link"
+                    onClick={filterBasedOnRange}
+                  >
+                    <button className="btn btn--black btn--outlined btn--sm btn-set-price-range">
+                      Go
+                    </button>
+                  </Link>
                 </div>
               </div>
             </div>
             <div className="filter-wrapper">
-              <div className="filter__header">Category:</div>
+              <div className="filter__header">Genre:</div>
               <div className="filter__content">
-                <div className="filter__content-item">
+                {genres.map((genre) => (
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${paginationData.sort}&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams(genre.name)}`,
+                    }}
+                    replace={true}
+                    // className="nav-link"
+                    key={genre._id}
+                    onClick={() => toggleGenre(genre.name)}
+                  >
+                    <div className="filter__content-item">
+                      <label className="input-checkbox">
+                        {/* <input type="checkbox" checked={true} /> */}
+                        <input
+                          type="checkbox"
+                          checked={
+                            filters.genres.findIndex(
+                              (appliedGenre) => appliedGenre == genre.name
+                            ) !== -1
+                          }
+                        />
+                        {/* {console.log(
+                          filters.genres.findIndex(
+                            (appliedGenre) => appliedGenre == genre.name
+                          ) !== -1
+                        )} */}
+                        <span>{genre.name}</span>
+                      </label>
+                    </div>
+                  </Link>
+                ))}
+
+                {/* <div className="filter__content-item">
                   <label className="input-checkbox">
                     <input type="checkbox" checked={true} />
                     <span>Fiction</span>
@@ -280,7 +758,7 @@ export default function FilteredPage({
                     <input type="checkbox" />
                     <span>Textbooks</span>
                   </label>
-                </div>
+                </div> */}
               </div>
             </div>
             <div className="filter-wrapper">
@@ -288,28 +766,28 @@ export default function FilteredPage({
               <div className="filter__content">
                 <div className="filter__content-item">
                   <label className="input-checkbox">
-                    <input type="checkbox" />
+                    <input type="checkbox" disabled={true} />
                     <span>4★ & above</span>
                   </label>
                 </div>
                 <div className="filter__content-item">
                   {" "}
                   <label className="input-checkbox">
-                    <input type="checkbox" />
+                    <input type="checkbox" disabled={true} />
                     <span>3★ & above</span>
                   </label>
                 </div>
                 <div className="filter__content-item">
                   {" "}
                   <label className="input-checkbox">
-                    <input type="checkbox" />
+                    <input type="checkbox" disabled={true} />
                     <span>2★ & above</span>
                   </label>
                 </div>
                 <div className="filter__content-item">
                   {" "}
                   <label className="input-checkbox">
-                    <input type="checkbox" />
+                    <input type="checkbox" disabled={true} />
                     <span>1★ & above</span>
                   </label>
                 </div>
@@ -320,8 +798,22 @@ export default function FilteredPage({
               <div className="filter__content">
                 <div className="filter__content-item">
                   <label className="input-checkbox">
-                    <input type="checkbox" />
+                    <input
+                      type="checkbox"
+                      checked={filters.language === "English"}
+                      disabled={true}
+                    />
                     <span>English</span>
+                  </label>
+                </div>
+                <div className="filter__content-item">
+                  <label className="input-checkbox">
+                    <input
+                      type="checkbox"
+                      checked={filters.language === "Hindi"}
+                      disabled={true}
+                    />
+                    <span>Hindi</span>
                   </label>
                 </div>
               </div>
@@ -329,33 +821,106 @@ export default function FilteredPage({
             <div className="filter-wrapper">
               <div className="filter__header">Discount:</div>
               <div className="filter__content">
-                <div className="filter__content-item">
-                  <label className="input-checkbox">
-                    <input type="checkbox" />
-                    <span>10% or more</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" />
-                    <span>25% or more</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" />
-                    <span>35% or more</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" />
-                    <span>50% or more</span>
-                  </label>
-                </div>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    search: `?sort=${paginationData.sort}&page=${1}&results=${
+                      paginationData.results
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}&discount=10`,
+                  }}
+                  replace={true}
+                  // className="nav-link"
+                  // onClick={() => toggleDiscount(10)}
+                >
+                  <div className="filter__content-item">
+                    <label className="input-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={filters.discount === 10}
+                        disabled={true}
+                      />
+                      <span>10% or more</span>
+                    </label>
+                  </div>
+                </Link>
+
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    search: `?sort=${paginationData.sort}&page=${1}&results=${
+                      paginationData.results
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}&discount=25`,
+                  }}
+                  replace={true}
+                  // className="nav-link"
+                  // onClick={() => toggleDiscount(25)}
+                >
+                  <div className="filter__content-item">
+                    {" "}
+                    <label className="input-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={filters.discount === 25}
+                        disabled={true}
+                      />
+                      <span>25% or more</span>
+                    </label>
+                  </div>
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    search: `?sort=${paginationData.sort}&page=${1}&results=${
+                      paginationData.results
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}&discount=35`,
+                  }}
+                  replace={true}
+                  // className="nav-link"
+                  // onClick={() => toggleDiscount(35)}
+                >
+                  <div className="filter__content-item">
+                    {" "}
+                    <label className="input-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={filters.discount === 35}
+                        disabled={true}
+                      />
+                      <span>35% or more</span>
+                    </label>
+                  </div>
+                </Link>
+                <Link
+                  to={{
+                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                    search: `?sort=${paginationData.sort}&page=${1}&results=${
+                      paginationData.results
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}&discount=50`,
+                  }}
+                  replace={true}
+                  // className="nav-link"
+                  // onClick={() => toggleDiscount(50)}
+                >
+                  <div className="filter__content-item">
+                    {" "}
+                    <label className="input-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={filters.discount === 50}
+                        disabled={true}
+                      />
+                      <span>50% or more</span>
+                    </label>
+                  </div>
+                </Link>
               </div>
             </div>
             <div className="filter-wrapper">
@@ -363,7 +928,7 @@ export default function FilteredPage({
               <div className="filter__content">
                 <div className="filter__content-item">
                   <label className="input-checkbox">
-                    <input type="checkbox" />
+                    <input type="checkbox" disabled={true} />
                     <span>Hardcover</span>
                   </label>
                 </div>
@@ -381,7 +946,7 @@ export default function FilteredPage({
               <div className="filter__content">
                 <div className="filter__content-item">
                   <label className="input-checkbox">
-                    <input type="checkbox" />
+                    <input type="checkbox" disabled />
                     <span>Exclude out of stock</span>
                   </label>
                 </div>
@@ -391,7 +956,8 @@ export default function FilteredPage({
         </div>
         <div className="filtered-page-section">
           <div className="filtered-page-section__subtitle">
-            {title === "Genre" ? "Fiction" : title}
+            {/* {title === "Genre" ? "Fiction" : title} */}
+            {title}
             <div className="filtered-showing-number-wrapper">
               Showing:{" "}
               <span>
@@ -426,8 +992,13 @@ export default function FilteredPage({
                       pathname: `/${title.toLowerCase().split(" ")[0]}`,
                       search: `?sort=${
                         paginationData.sort
-                      }&page=${1}&results=${3}`,
+                      }&page=${1}&results=${3}&priceMin=${
+                        filters.priceRange[0]
+                      }&priceMax=${filters.priceRange[1]}${getGenreSearchParams(
+                        ""
+                      )}`,
                     }}
+                    replace={true}
                     className="nav-link"
                     onClick={() => changeResultsPerPage(3)}
                   >
@@ -443,8 +1014,13 @@ export default function FilteredPage({
                       pathname: `/${title.toLowerCase().split(" ")[0]}`,
                       search: `?sort=${
                         paginationData.sort
-                      }&page=${1}&results=${6}`,
+                      }&page=${1}&results=${6}&priceMin=${
+                        filters.priceRange[0]
+                      }&priceMax=${filters.priceRange[1]}${getGenreSearchParams(
+                        ""
+                      )}`,
                     }}
+                    replace={true}
                     className="nav-link"
                     onClick={() => changeResultsPerPage(6)}
                   >
@@ -460,8 +1036,13 @@ export default function FilteredPage({
                       pathname: `/${title.toLowerCase().split(" ")[0]}`,
                       search: `?sort=${
                         paginationData.sort
-                      }&page=${1}&results=${12}`,
+                      }&page=${1}&results=${12}&priceMin=${
+                        filters.priceRange[0]
+                      }&priceMax=${filters.priceRange[1]}${getGenreSearchParams(
+                        ""
+                      )}`,
                     }}
+                    replace={true}
                     className="nav-link"
                     onClick={() => changeResultsPerPage(12)}
                   >
@@ -477,8 +1058,13 @@ export default function FilteredPage({
                       pathname: `/${title.toLowerCase().split(" ")[0]}`,
                       search: `?sort=${
                         paginationData.sort
-                      }&page=${1}&results=${24}`,
+                      }&page=${1}&results=${24}&priceMin=${
+                        filters.priceRange[0]
+                      }&priceMax=${filters.priceRange[1]}${getGenreSearchParams(
+                        ""
+                      )}`,
                     }}
+                    replace={true}
                     className="nav-link"
                     onClick={() => changeResultsPerPage(24)}
                   >
@@ -580,8 +1166,11 @@ export default function FilteredPage({
                     pathname: `/${title.toLowerCase().split(" ")[0]}`,
                     search: `?sort=${""}&page=${1}&results=${
                       paginationData.results
-                    }`,
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}`,
                   }}
+                  replace={true}
                   className="nav-link"
                   onClick={() => updateSort("")}
                 >
@@ -594,8 +1183,11 @@ export default function FilteredPage({
                     // search: "?sort=high-low",
                     search: `?sort=high-low&page=${1}&results=${
                       paginationData.results
-                    }`,
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}`,
                   }}
+                  replace={true}
                   className="nav-link"
                   onClick={() => updateSort("high-low")}
                 >
@@ -608,8 +1200,11 @@ export default function FilteredPage({
                     // search: "?sort=low-high",
                     search: `?sort=low-high&page=${1}&results=${
                       paginationData.results
-                    }`,
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}`,
                   }}
+                  replace={true}
                   className="nav-link"
                   onClick={() => updateSort("low-high")}
                 >
@@ -622,8 +1217,11 @@ export default function FilteredPage({
                     // search: "?sort=review",
                     search: `?sort=review&page=${1}&results=${
                       paginationData.results
-                    }`,
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}`,
                   }}
+                  replace={true}
                   className="nav-link"
                   onClick={() => updateSort("review")}
                 >
@@ -638,8 +1236,11 @@ export default function FilteredPage({
                     // search: "?sort=date",
                     search: `?sort=date&page=${1}&results=${
                       paginationData.results
-                    }`,
+                    }&priceMin=${filters.priceRange[0]}&priceMax=${
+                      filters.priceRange[1]
+                    }${getGenreSearchParams("")}`,
                   }}
+                  replace={true}
                   className="nav-link"
                   onClick={() => updateSort("date")}
                 >
@@ -659,6 +1260,8 @@ export default function FilteredPage({
               // seeAllLink={"/frontend-endpoint-that-gives-trneding-books"}
               paginationData={paginationData}
               setPaginationData={setPaginationData}
+              filters={filters}
+              getGenreSearchParams={getGenreSearchParams}
             />
           </div>
         </div>

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
+import { useData } from "../context/DataProvider";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
@@ -7,18 +9,115 @@ import Path from "../components/Path";
 // import ClampLines from "react-clamp-lines";
 // import bookImg1 from "../images/covers/hptps.jpg";
 import ThumbnailView from "../components/ThumbnailView";
-import { productData as bookData } from "../components/productData";
+import { successNotification, successRemoveNotification } from "../utils/toast";
+import { productData as booa } from "../components/productData";
 
 export default function Book() {
-  // const similarBooksData = [...bookData];
+  // const similarBooksData = [...booa];
+  const [bookQuantity, setBookQuantity] = useState(1);
+  const {
+    state: { wishlist, cart },
+    dispatch: dataDispatch,
+  } = useData();
 
   const [similarBooks, setSimilarBooks] = useState([]);
   const [book, setBook] = useState(null);
   const { bookId } = useParams();
-  console.log(bookId);
+
+  const updateBookQuantity = (value) => {
+    setBookQuantity((prevQuantity) => {
+      if (
+        prevQuantity + value !== 0 &&
+        prevQuantity + value !== book.formats[0].stock + 1
+      ) {
+        return prevQuantity + value;
+      } else {
+        return prevQuantity;
+      }
+    });
+  };
+
+  const presentInWishlist = (id) => {
+    if (wishlist.items.find((item) => item.book._id === id)) return true;
+    else return false;
+  };
+  const presentInCart = (id) => {
+    if (cart.items.find((item) => item.book._id === id)) return true;
+    else return false;
+  };
+
+  const updateCart = async (
+    action,
+    modifiedQuantity,
+    showNotification = true
+  ) => {
+    try {
+      const postBody = {
+        action,
+        bookId: book._id,
+        format: "paperback",
+        // quantity: modifiedQuantity || bookQuantity,
+        quantity: modifiedQuantity,
+      };
+      axios
+        .post(`http://localhost:3000/carts/${cart.id}`, postBody)
+        .then(({ data: { success, cart, message } }) => {
+          dataDispatch({
+            type: "UPDATE_CART",
+            payload: {
+              items: cart.items,
+              total: cart.checkout.total,
+              subtotal: cart.checkout.subtotal,
+              discount: cart.checkout.discountTotal,
+            },
+          });
+          if (showNotification) {
+            if (action === "ADD_TO_CART") {
+              if (message) successNotification(message);
+              else successNotification("Added to cart!");
+            } else if (action === "REMOVE_FROM_CART") {
+              successRemoveNotification("Removed from cart!");
+            }
+          }
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const addToCart = (action, modifiedQuantity, showNotification = true) => {
+    updateCart(action, modifiedQuantity, showNotification);
+    setBookQuantity(1);
+  };
+
+  const updateWishlist = async (action, showNotification = true) => {
+    try {
+      const postBody = {
+        action,
+        bookId: book._id,
+        format: "paperback",
+      };
+      axios
+        .post(`http://localhost:3000/wishlists/${wishlist.id}`, postBody)
+        .then(({ data: { success, wishlist, message } }) => {
+          dataDispatch({ type: "UPDATE_WISHLIST", payload: wishlist.items });
+          if (showNotification) {
+            if (action === "ADD_TO_WISHLIST") {
+              if (message) successNotification(message);
+              else successNotification("Added to wishlist!");
+            } else if (action === "REMOVE_FROM_WISHLIST") {
+              successRemoveNotification("Removed from wishlist!");
+            }
+          }
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getBook = async () => {
     try {
+      dataDispatch({ type: "SHOW_LOADER" });
       const {
         data: { success, book: currentBook },
       } = await axios.get(`http://localhost:3000/books/${bookId}`);
@@ -40,6 +139,7 @@ export default function Book() {
       } = await axios.get("http://localhost:3000/books?page=2&results=8");
       if (success) {
         setSimilarBooks([...books]);
+        dataDispatch({ type: "HIDE_LOADER" });
       }
     } catch (error) {
       console.error(error);
@@ -152,13 +252,22 @@ export default function Book() {
                     </div>
                     <div className="book-wishlist-wrapper">
                       Wishlist:{" "}
-                      <div className="book-wishlist-btn">
+                      <div
+                        className="book-wishlist-btn"
+                        onClick={() => {
+                          return presentInWishlist(book._id)
+                            ? updateWishlist("REMOVE_FROM_WISHLIST")
+                            : updateWishlist("ADD_TO_WISHLIST");
+                        }}
+                      >
                         <svg
                           className="book-like-icon"
                           width="24"
                           height="24"
                           viewBox="0 0 24 24"
-                          fill="none"
+                          fill={
+                            presentInWishlist(book._id) ? "#dc2626" : "#a0a0a0"
+                          }
                           xmlns="http://www.w3.org/2000/svg"
                         >
                           <path
@@ -175,18 +284,52 @@ export default function Book() {
                     <div className="book-quantity-counter-wrapper">
                       Quantity:
                       <div className="book-quantity-counter">
-                        <button className="counter-btn">-</button>
-                        <div className="counter-value">1</div>
-                        <button className="counter-btn">+</button>
+                        <button
+                          className="counter-btn"
+                          onClick={() => updateBookQuantity(-1)}
+                        >
+                          -
+                        </button>
+                        <div className="counter-value">{bookQuantity}</div>
+                        <button
+                          className="counter-btn"
+                          onClick={() => updateBookQuantity(1)}
+                        >
+                          +
+                        </button>
                       </div>
                     </div>
                     {/* <div className="product-display-separator--vertical"></div> */}
-                    <button className="btn btn--dark btn--sm btn-buy-now">
-                      Buy Now
-                    </button>
-                    <button className="btn btn--black btn--outlined btn--sm btn-add-to-cart">
+                    <Link to="/cart" className="btn-buy-now--link">
+                      <button
+                        className="btn btn--dark btn--sm btn-buy-now"
+                        onClick={() =>
+                          addToCart("ADD_TO_CART", bookQuantity, false)
+                        }
+                      >
+                        Buy Now
+                      </button>
+                    </Link>
+                    {presentInCart(book._id) ? (
+                      <Link to="/cart" className="btn-buy-now--link">
+                        <button className="btn btn--black btn--outlined btn--sm btn-add-to-cart">
+                          Go to Cart
+                        </button>
+                      </Link>
+                    ) : (
+                      <button
+                        className="btn btn--black btn--outlined btn--sm btn-add-to-cart"
+                        onClick={() => addToCart("ADD_TO_CART", bookQuantity)}
+                      >
+                        Add to Cart
+                      </button>
+                    )}
+                    {/* <button
+                      className="btn btn--black btn--outlined btn--sm btn-add-to-cart"
+                      onClick={() => addToCart("ADD_TO_CART", bookQuantity)}
+                    >
                       Add to Cart
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>
@@ -265,13 +408,13 @@ export default function Book() {
                   <div className="review-stats__content">
                     <div className="review-stats--overall">
                       <div className="review-stats--overall-rating">
-                        {bookData[0].rating[0]}
+                        {booa[0].rating[0]}
                       </div>
                       <div className="review-state--overall-stars">
                         <div
                           className="stars"
                           style={{
-                            "--rating": bookData[0].rating[0],
+                            "--rating": booa[0].rating[0],
                             // "--star-background": "#76DB98",
                             "--star-size": "1.5rem",
                           }}
@@ -279,7 +422,7 @@ export default function Book() {
                         ></div>
                       </div>
                       <div className="review-state--overall-reviews">
-                        {bookData[0].rating[1]} reviews
+                        {booa[0].rating[1]} reviews
                       </div>
                     </div>
                     <div className="review-stats--star-wrapper">
@@ -398,7 +541,7 @@ export default function Book() {
                     </div>
                   </div>
                   <div className="book-reviews__content">
-                    {bookData[0].reviews.map((review, index) => (
+                    {booa[0].reviews.map((review, index) => (
                       <div key={index} className="book-review-wrapper">
                         <div className="book-review__header">
                           <div className="book-review__user-avatar avatar bg-red-500 text-white">

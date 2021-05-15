@@ -15,7 +15,7 @@ export default function BannerCarousel({ content }) {
         // lockOnWindowScroll
         isPlaying={content.length > 1}
         interval={5000}
-        touchEnabled={content.length > 1}
+        // touchEnabled={content.length > 1}
         className={content.length === 1 && "custom-banner"}
       >
         <Slider>

@@ -3,11 +3,15 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import FilteredPage from "../components/FilteredPage";
 
-export default function Genre() {
+export default function Search() {
   return (
     <>
       <Header />
-      <FilteredPage title={"Genre"} link={""} pathHistory={["Home", "Genre"]} />
+      <FilteredPage
+        title={"Search"}
+        link={""}
+        pathHistory={["Home", "Search"]}
+      />
       <Footer />
     </>
   );

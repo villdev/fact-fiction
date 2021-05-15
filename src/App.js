@@ -4,14 +4,17 @@ import ScrollToTop from "./components/ScrollToTop";
 import axios from "axios";
 import { useAuth } from "./context/AuthProvider";
 import { useData } from "./context/DataProvider";
+import { ToastContainer, Slide } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.min.css";
 
 import "./css/pars.css";
 import "./css/style.css";
-import { productData } from "./components/productData";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Search from "./pages/Search";
 import New from "./pages/New";
 import Bestsellers from "./pages/Bestsellers";
 import Genre from "./pages/Genre";
@@ -39,6 +42,7 @@ export default function App() {
 
   const getBanners = async () => {
     try {
+      dataDispatch({ type: "SHOW_LOADER" });
       if (banners.length === 0) {
         const {
           data: { success, banners: allBanners },
@@ -82,8 +86,6 @@ export default function App() {
       const {
         data: { success, user: currentUser },
       } = await axios.get(`http://localhost:3000/users/${tempUserId}`);
-      //   data: { success, user: currentUser },
-      // } = await axiosInstance.get(`/users/${tempUserId}`);
       if (success) {
         authDispatch({
           type: "STORE_USER_DETAILS",
@@ -97,6 +99,7 @@ export default function App() {
           type: "SETUP_WISHLIST",
           payload: currentUser.wishlist,
         });
+        dataDispatch({ type: "HIDE_LOADER" });
       }
     } catch (error) {
       console.error(error);
@@ -107,6 +110,7 @@ export default function App() {
     getBanners();
     getGenres();
     getUserDetails();
+    // window.scrollTo(0, 0);
   }, []);
   return (
     <div className="App">
@@ -119,11 +123,14 @@ export default function App() {
 
           <Route path="/signup" element={<Signup />} />
 
+          <Route path="/search" element={<Search />} />
+
           <Route path="/new" element={<New />} />
 
           <Route path="/bestsellers" element={<Bestsellers />} />
 
-          <Route path="/genre" element={<Genre />} />
+          <Route path="/category" element={<Genre />} />
+          {/* <Route path="/genre" element={<Genre />} /> */}
           {/* <Route path="/genre/:id" element={<Genre />} /> */}
 
           <Route path="/trending" element={<Trending />} />
@@ -135,21 +142,20 @@ export default function App() {
           <Route path="/wishlist" element={<Wishlist />} />
 
           <Route path="/book/:bookId" element={<Book />} />
-          {/* <Route path="/book" element={<Book productData={productData[0]} />} /> */}
         </Routes>
       </Router>
-
-      {/* temp----------------------- */}
-      {/* <Header /> */}
-      {/* <Home /> */}
-      {/* <ProductPage productData={productData[1]} /> */}
-      {/* <FilteredPage trending={true} /> */}
-      {/* <CartPage /> */}
-      {/* <WishlistPage /> */}
-      {/* <CheckoutPage /> */}
-      {/* <SignupPage /> */}
-      {/* <LoginPage /> */}
-      {/* <Footer /> */}
+      <ToastContainer
+        position="bottom-right"
+        autoClose={3000}
+        transition={Slide}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

@@ -53,10 +53,24 @@ const dataReducer = (state, action) => {
           items: [...action.payload],
         },
       };
-    case "CHANGE_RESULTS_PER_PAGE":
-      break;
-    case "CHANGE_SORT":
-      break;
+    // case "TOGGLE_LOADER":
+    case "SHOW_LOADER":
+      return {
+        ...state,
+        // loading: !state.loading,
+        loading: true,
+      };
+    case "HIDE_LOADER":
+      return {
+        ...state,
+        // loading: !state.loading,
+        loading: false,
+      };
+    case "UPDATE_SEARCH_QUERY":
+      return {
+        ...state,
+        searchQuery: action.payload,
+      };
     default:
       return state;
   }
@@ -84,6 +98,8 @@ const initialState = {
   bestsellers: [],
   trending: [],
   //   filters: [],
+  loading: false,
+  searchQuery: "",
 };
 
 export const DataProvider = ({ children }) => {

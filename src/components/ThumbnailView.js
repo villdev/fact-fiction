@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import ThumbnailBook from "./ThumbnailBook";
 
 export default function ThumbnailView({
   booksData,
   title,
-  maxDisplay,
+  // maxDisplay,
   maxBooksInRow,
   seeAllLink,
   paginationData,
   setPaginationData,
+  filters,
+  getGenreSearchParams,
 }) {
   // const [currentPage, setCurrentPage] = useState(1);
   // const limitedBooksData = booksData.slice(0, maxDisplay);
@@ -18,10 +20,27 @@ export default function ThumbnailView({
     "--max-items-in-row": maxBooksInRow,
   };
   const changeCurrentPage = (pageNumber) => {
+    let previousPage, nextPage;
+    const totalPages = Math.ceil(
+      paginationData.totalResults / paginationData.results
+    );
+    if (pageNumber === totalPages && pageNumber !== 1) {
+      previousPage = { page: pageNumber - 1 };
+    } else if (pageNumber === 1 && totalPages > 1) {
+      nextPage = { page: pageNumber + 1 };
+    } else if (pageNumber > 1 && pageNumber < totalPages) {
+      previousPage = { page: pageNumber - 1 };
+      nextPage = { page: pageNumber + 1 };
+    }
+    // else if(totalPages === 1) {
+    // }
+
     setPaginationData((prevData) => {
       return {
         ...prevData,
         currentPage: pageNumber,
+        next: nextPage,
+        previous: previousPage,
       };
     });
   };
@@ -47,35 +66,42 @@ export default function ThumbnailView({
       {/* {paginationData && maxDisplay < booksData.length && ( */}
       {paginationData && (
         <div className="paginate">
-          {paginationData.previous && (
-            <Link
-              to={{
-                pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                search: `?sort=${paginationData.sort}&page=${paginationData.previous.page}&results=${paginationData.results}`,
-              }}
-              className="nav-link"
-              onClick={() => changeCurrentPage(paginationData.previous.page)}
-            >
-              <div
-                className="btn-paginate paginate-prev"
-                // onClick={() => changeCurrentPage(paginationData.previous.page)}
+          {paginationData.previous &&
+            paginationData.totalResults > paginationData.results && (
+              <Link
+                to={{
+                  pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                  search: `?sort=${paginationData.sort}&page=${
+                    paginationData.previous.page
+                  }&results=${paginationData.results}&priceMin=${
+                    filters.priceRange[0]
+                  }&priceMax=${filters.priceRange[1]}${getGenreSearchParams(
+                    ""
+                  )}`,
+                }}
+                className="nav-link"
+                onClick={() => changeCurrentPage(paginationData.previous.page)}
               >
-                <svg
-                  className="paginate-btn-icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="btn-paginate paginate-prev"
+                  // onClick={() => changeCurrentPage(paginationData.previous.page)}
                 >
-                  <path
-                    d="M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z"
-                    // fill="#333333"
-                  />
-                </svg>
-              </div>
-            </Link>
-          )}
+                  <svg
+                    className="paginate-btn-icon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M15.41 16.59L10.83 12L15.41 7.41L14 6L8 12L14 18L15.41 16.59Z"
+                      // fill="#333333"
+                    />
+                  </svg>
+                </div>
+              </Link>
+            )}
           <div className="paginate-pages-wrapper">
             {[
               ...Array(
@@ -88,7 +114,11 @@ export default function ThumbnailView({
                     pathname: `/${title.toLowerCase().split(" ")[0]}`,
                     search: `?sort=${paginationData.sort}&page=${
                       index + 1
-                    }&results=${paginationData.results}`,
+                    }&results=${paginationData.results}&priceMin=${
+                      filters.priceRange[0]
+                    }&priceMax=${filters.priceRange[1]}${getGenreSearchParams(
+                      ""
+                    )}`,
                   }}
                   className="nav-link"
                   onClick={() => changeCurrentPage(index + 1)}
@@ -112,35 +142,42 @@ export default function ThumbnailView({
             <div className="btn-paginate-page">2</div>
             <div className="btn-paginate-page">3</div> */}
           </div>
-          {paginationData.next && (
-            <Link
-              to={{
-                pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                search: `?sort=${paginationData.sort}&page=${paginationData.next.page}&results=${paginationData.results}`,
-              }}
-              className="nav-link"
-              onClick={() => changeCurrentPage(paginationData.next.page)}
-            >
-              <div
-                className="btn-paginate paginate-next"
-                // onClick={() => changeCurrentPage(paginationData.next.page)}
+          {paginationData.next &&
+            paginationData.totalResults > paginationData.results && (
+              <Link
+                to={{
+                  pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                  search: `?sort=${paginationData.sort}&page=${
+                    paginationData.next.page
+                  }&results=${paginationData.results}&priceMin=${
+                    filters.priceRange[0]
+                  }&priceMax=${filters.priceRange[1]}${getGenreSearchParams(
+                    ""
+                  )}`,
+                }}
+                className="nav-link"
+                onClick={() => changeCurrentPage(paginationData.next.page)}
               >
-                <svg
-                  className="paginate-btn-icon"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
+                <div
+                  className="btn-paginate paginate-next"
+                  // onClick={() => changeCurrentPage(paginationData.next.page)}
                 >
-                  <path
-                    d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
-                    // fill="#333333"
-                  />
-                </svg>
-              </div>
-            </Link>
-          )}
+                  <svg
+                    className="paginate-btn-icon"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
+                      // fill="#333333"
+                    />
+                  </svg>
+                </div>
+              </Link>
+            )}
         </div>
       )}
     </div>

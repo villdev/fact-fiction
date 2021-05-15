@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import { useData } from "../context/DataProvider";
+import { successNotification, successRemoveNotification } from "../utils/toast";
 import ClampLines from "react-clamp-lines";
 
 export default function ListBookActions({
@@ -19,17 +21,22 @@ export default function ListBookActions({
     (book.formats[0].price * book.formats[0].discount) / 100
   ).toFixed(2);
 
-  const updateCart = async (action, modifiedQuantity) => {
+  const updateCart = async (
+    action,
+    modifiedQuantity,
+    showNotification = true
+  ) => {
     try {
       const postBody = {
         action,
         bookId: book._id,
         format: "paperback",
-        quantity: modifiedQuantity || quantity,
+        // quantity: modifiedQuantity || bookQuantity,
+        quantity: modifiedQuantity,
       };
       axios
         .post(`http://localhost:3000/carts/${cart.id}`, postBody)
-        .then(({ data: { success, cart } }) => {
+        .then(({ data: { success, cart, message } }) => {
           dataDispatch({
             type: "UPDATE_CART",
             payload: {
@@ -39,6 +46,14 @@ export default function ListBookActions({
               discount: cart.checkout.discountTotal,
             },
           });
+          if (showNotification) {
+            if (action === "ADD_TO_CART") {
+              if (message) successNotification(message);
+              else successNotification("Added to cart!");
+            } else if (action === "REMOVE_FROM_CART") {
+              successRemoveNotification("Removed from cart!");
+            }
+          }
         });
     } catch (error) {
       console.error(error);
@@ -60,11 +75,12 @@ export default function ListBookActions({
   };
 
   const moveToWishlist = () => {
-    updateWishlist("ADD_TO_WISHLIST");
-    updateCart("REMOVE_FROM_CART");
+    updateWishlist("ADD_TO_WISHLIST", false);
+    updateCart("REMOVE_FROM_CART", 1, false);
+    successNotification("Moved to wishlist!");
   };
 
-  const updateWishlist = async (action) => {
+  const updateWishlist = async (action, showNotification = true) => {
     try {
       const postBody = {
         action,
@@ -73,8 +89,16 @@ export default function ListBookActions({
       };
       axios
         .post(`http://localhost:3000/wishlists/${wishlist.id}`, postBody)
-        .then(({ data: { success, wishlist } }) => {
+        .then(({ data: { success, wishlist, message } }) => {
           dataDispatch({ type: "UPDATE_WISHLIST", payload: wishlist.items });
+          if (showNotification) {
+            if (action === "ADD_TO_WISHLIST") {
+              if (message) successNotification(message);
+              else successNotification("Added to wishlist!");
+            } else if (action === "REMOVE_FROM_WISHLIST") {
+              successRemoveNotification("Removed from wishlist!");
+            }
+          }
         });
     } catch (error) {
       console.error(error);
@@ -85,36 +109,40 @@ export default function ListBookActions({
       {cartVersion && (
         <div className="list-book-actions">
           <div className="product-details-wrapper">
-            <div className="product-details__cover">
-              <img src={book.covers[0]} alt="" />
-            </div>
-            <div className="product-details__name">
-              {/* <div className="product-details__title">{book.title}</div> */}
+            <Link to={`/book/${book._id}`} className="nav-link">
+              <div className="product-details__cover">
+                <img src={book.covers[0]} alt="" />
+              </div>
+            </Link>
+            <Link to={`/book/${book._id}`} className="nav-link">
+              <div className="product-details__name">
+                {/* <div className="product-details__title">{book.title}</div> */}
 
-              <ClampLines
-                text={book.name}
-                id={book._id}
-                lines={1}
-                buttons={false}
-                className="product-details__title"
-              />
-              <div className="product-details__author">{book.authors}</div>
-              <div className="product-details__price">
-                <div className="product-details__selling-price">
-                  {/* ₹{(
+                <ClampLines
+                  text={book.name}
+                  id={book._id}
+                  lines={1}
+                  buttons={false}
+                  className="product-details__title"
+                />
+                <div className="product-details__author">{book.authors}</div>
+                <div className="product-details__price">
+                  <div className="product-details__selling-price">
+                    {/* ₹{(
                                     book.price[0] -
                                     (book.price[0] * book.discount[0]) / 100
                                 ).toFixed(2)} */}
-                  ₹{sellingPrice}
-                </div>
-
-                {book.formats[0].discount !== 0 && (
-                  <div className="product-details__original-price">
-                    ₹{book.formats[0].price}
+                    ₹{sellingPrice}
                   </div>
-                )}
+
+                  {book.formats[0].discount !== 0 && (
+                    <div className="product-details__original-price">
+                      ₹{book.formats[0].price}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="product-quantity-wrapper book-quantity-counter">
             <button className="counter-btn" onClick={() => updateQuantity(-1)}>
@@ -148,22 +176,27 @@ export default function ListBookActions({
       {wishlistVersion && (
         <div className="list-book-actions">
           <div className="product-details-wrapper">
-            <div className="product-details__cover">
-              <img src={book.covers[0]} alt="" />
-            </div>
-            <div className="product-details__name">
-              {/* <div className="product-details__title">{book.title}</div> */}
+            <Link to={`/book/${book._id}`} className="nav-link">
+              <div className="product-details__cover">
+                <img src={book.covers[0]} alt="" />
+              </div>
+            </Link>
+            <Link to={`/book/${book._id}`} className="nav-link">
+              <div className="product-details__name">
+                {/* <div className="product-details__title">{book.title}</div> */}
 
-              <ClampLines
-                text={book.name}
-                id={book._id}
-                lines={1}
-                buttons={false}
-                className="product-details__title"
-              />
-              <div className="product-details__author">{book.authors}</div>
-            </div>
+                <ClampLines
+                  text={book.name}
+                  id={book._id}
+                  lines={1}
+                  buttons={false}
+                  className="product-details__title"
+                />
+                <div className="product-details__author">{book.authors}</div>
+              </div>
+            </Link>
           </div>
+
           <div className="product-price-wrapper">
             <div className="product-price__selling-price">
               {/* ₹{(
@@ -181,7 +214,10 @@ export default function ListBookActions({
           </div>
           <div className="product-availability-wrapper">In Stock</div>
           <div className="actions-wrapper">
-            <button className="btn btn--dark btn--sm btn--outlined btn-move-to-cart">
+            <button
+              className="btn btn--dark btn--sm btn--outlined btn-move-to-cart"
+              onClick={() => updateCart("ADD_TO_CART", 1)}
+            >
               Add to Cart
             </button>
             {/* <button className="btn btn--dark btn--sm btn-remove">Remove</button> */}

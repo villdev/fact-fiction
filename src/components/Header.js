@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useData } from "../context/DataProvider";
+import Loader from "../components/Loader";
 import logo from "../images/fflogo.svg";
 
 export default function Header() {
   const {
-    state: { genres, cart, wishlist },
+    state: { genres, cart, wishlist, searchQuery },
+    dispatch: dataDispatch,
   } = useData();
+
+  // const [searchQuery, setSearchQuery] = useState("");
+
   return (
     <header>
       <div className="main-header">
@@ -20,13 +25,21 @@ export default function Header() {
             </a> */}
           </div>
           {/* <form action="" method="get"></form> */}
-          <form className="search-bar-wrapper">
+          <form className="search-bar-wrapper" action={"/search"}>
             <input
               className="search-bar"
-              type="text"
-              name="search"
+              // type="text"
+              type="search"
+              name="s"
               id=""
               placeholder="Search"
+              value={searchQuery}
+              onChange={(e) =>
+                dataDispatch({
+                  type: "UPDATE_SEARCH_QUERY",
+                  payload: e.target.value,
+                })
+              }
             />
             <button className="search-btn" type="submit">
               <svg
@@ -339,17 +352,19 @@ export default function Header() {
                 <ul>
                   {/* {console.log(genres)} */}
                   {genres.map((genre) => (
+                    // <Link
+                    //   to={{
+                    //     pathname: "/category",
+                    //     search: `?genre=${encodeURIComponent(genre.name)}`,
+                    //   }}
+                    //   className="nav-link header-nav-link"
+                    //   key={genre._id}
+                    // >
                     <li key={genre._id} className="nav-dropdown__item">
                       {genre.name}
                     </li>
+                    // </Link>
                   ))}
-                  {/* <li className="nav-dropdown__item">Fiction</li>
-                  <li className="nav-dropdown__item">Non-fiction</li>
-                  <li className="nav-dropdown__item">Romance</li>
-                  <li className="nav-dropdown__item">
-                    Business &#38; Economics
-                  </li>
-                  <li className="nav-dropdown__item">Textbooks</li> */}
                 </ul>
               </div>
             </li>
@@ -435,6 +450,7 @@ export default function Header() {
           </div>
         </nav>
       </div>
+      <Loader />
     </header>
   );
 }

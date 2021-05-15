@@ -17,12 +17,29 @@ export default function Home() {
   const bestsellersBookData = [...productData.slice(0, 5)];
   const {
     state: { banners },
+    dispatch: dataDispatch,
   } = useData();
 
   const [trendingBooks, setTrendingBooks] = useState([]);
   const [bestsellerBooks, setBestsellerBooks] = useState([]);
   const [newBooks, setNewBooks] = useState([]);
 
+  const getNewBooks = async () => {
+    try {
+      dataDispatch({ type: "SHOW_LOADER" });
+      const {
+        data: {
+          success,
+          paginatedBooks: { books },
+        },
+      } = await axios.get("http://localhost:3000/books?page=3&results=4");
+      if (success) {
+        setNewBooks([...books]);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
   const getTrendingBooks = async () => {
     try {
       const {
@@ -48,21 +65,7 @@ export default function Home() {
       } = await axios.get("http://localhost:3000/books?page=2&results=5");
       if (success) {
         setBestsellerBooks([...books]);
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-  const getNewBooks = async () => {
-    try {
-      const {
-        data: {
-          success,
-          paginatedBooks: { books },
-        },
-      } = await axios.get("http://localhost:3000/books?page=3&results=4");
-      if (success) {
-        setNewBooks([...books]);
+        dataDispatch({ type: "HIDE_LOADER" });
       }
     } catch (error) {
       console.error(error);
@@ -73,6 +76,7 @@ export default function Home() {
     getNewBooks();
     getTrendingBooks();
     getBestsellerBooks();
+    // window.scrollTo(0, 0);
   }, []);
   return (
     <>
@@ -266,7 +270,8 @@ export default function Home() {
             />
           </div>
         </div>
-        {banners.length > 0 && <BannerCarousel content={banners.slice(0, 1)} />}
+        {/* {banners.length > 0 && <BannerCarousel content={banners.slice(0, 1)} />} */}
+        {banners.length > 0 && <BannerCarousel content={[banners[2]]} />}
       </div>
       <Footer />
     </>

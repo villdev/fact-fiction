@@ -3,13 +3,17 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import ClampLines from "react-clamp-lines";
 import { useData } from "../context/DataProvider";
+import { successNotification, successRemoveNotification } from "../utils/toast";
+
+import "react-toastify/dist/ReactToastify.min.css";
 
 export default function ThumbnailBook({ bookData }) {
   const {
     state: { wishlist, cart },
     dispatch: dataDispatch,
   } = useData();
-  const updateWishlist = async (action) => {
+
+  const updateWishlist = async (action, showNotification = true) => {
     try {
       const postBody = {
         action,
@@ -18,25 +22,38 @@ export default function ThumbnailBook({ bookData }) {
       };
       axios
         .post(`http://localhost:3000/wishlists/${wishlist.id}`, postBody)
-        .then(({ data: { success, wishlist } }) => {
+        .then(({ data: { success, wishlist, message } }) => {
           dataDispatch({ type: "UPDATE_WISHLIST", payload: wishlist.items });
+          if (showNotification) {
+            if (action === "ADD_TO_WISHLIST") {
+              if (message) successNotification(message);
+              else successNotification("Added to wishlist!");
+            } else if (action === "REMOVE_FROM_WISHLIST") {
+              successRemoveNotification("Removed from wishlist!");
+            }
+          }
         });
     } catch (error) {
       console.error(error);
     }
   };
 
-  const updateCart = async (action) => {
+  const updateCart = async (
+    action,
+    modifiedQuantity,
+    showNotification = true
+  ) => {
     try {
       const postBody = {
         action,
         bookId: bookData._id,
-        quantity: 1,
+        // quantity: 1,
+        quantity: modifiedQuantity,
         format: "paperback",
       };
       axios
         .post(`http://localhost:3000/carts/${cart.id}`, postBody)
-        .then(({ data: { success, cart } }) => {
+        .then(({ data: { success, cart, message } }) => {
           dataDispatch({
             type: "UPDATE_CART",
             payload: {
@@ -46,6 +63,14 @@ export default function ThumbnailBook({ bookData }) {
               discount: cart.checkout.discountTotal,
             },
           });
+          if (showNotification) {
+            if (action === "ADD_TO_CART") {
+              if (message) successNotification(message);
+              else successNotification("Added to cart!");
+            } else if (action === "REMOVE_FROM_CART") {
+              successRemoveNotification("Removed from cart!");
+            }
+          }
         });
     } catch (error) {
       console.error(error);
@@ -98,7 +123,7 @@ export default function ThumbnailBook({ bookData }) {
         {!presentInCart(bookData._id) && (
           <div
             className="t-book-cart-wrapper"
-            onClick={() => updateCart("ADD_TO_CART")}
+            onClick={() => updateCart("ADD_TO_CART", 1)}
           >
             <svg
               className="t-book-cart-icon"
