@@ -160,18 +160,88 @@ export default function Home() {
             </div>
             <div className="home-page-section__content">
               <div className="genres-wrapper">
-                {/* <div className="genre"><Link> Fiction</Link></div> */}
-                <div className="genre">
-                  {/* <Link to="/genre" className="genre-mosiac-link"> */}{" "}
-                  Fiction
-                  {/* </Link> */}
+                <div className="genre-tile">
+                  <Link
+                    to={{
+                      pathname: "/category",
+                      search: `?genre=${encodeURIComponent("Fiction")}`,
+                    }}
+                    className="nav-link genre-tile--link"
+                  >
+                    Fiction
+                  </Link>
                 </div>
-                <div className="genre">Romance</div>
-                <div className="genre">YA</div>
-                <div className="genre">Non-Fiction</div>
-                <div className="genre">Crime, Thriller &#38; Mystery</div>
-                <div className="genre">Business &#38; Economics</div>
-                <div className="genre">Textbooks</div>
+
+                <div className="genre-tile">
+                  <Link
+                    to={{
+                      pathname: "/category",
+                      search: `?genre=${encodeURIComponent("Romance")}`,
+                    }}
+                    className="nav-link genre-tile--link"
+                  >
+                    Romance
+                  </Link>
+                </div>
+                <div className="genre-tile">
+                  <Link
+                    to={{
+                      pathname: "/category",
+                      search: `?genre=${encodeURIComponent("YA")}`,
+                    }}
+                    className="nav-link genre-tile--link"
+                  >
+                    YA
+                  </Link>
+                </div>
+                <div className="genre-tile">
+                  <Link
+                    to={{
+                      pathname: "/category",
+                      search: `?genre=${encodeURIComponent("Fantasy")}`,
+                    }}
+                    className="nav-link genre-tile--link"
+                  >
+                    Fantasy
+                  </Link>
+                </div>
+                <div className="genre-tile">
+                  <Link
+                    to={{
+                      pathname: "/category",
+                      search: `?genre=${encodeURIComponent(
+                        "Thriller"
+                      )}&genre=${encodeURIComponent("Mystery")}`,
+                    }}
+                    className="nav-link genre-tile--link"
+                  >
+                    Crime, Thriller &#38; Mystery
+                  </Link>
+                </div>
+                <div className="genre-tile">
+                  <Link
+                    to={{
+                      pathname: "/category",
+                      search: `?genre=${encodeURIComponent(
+                        "Business & Economics"
+                      )}`,
+                    }}
+                    className="nav-link genre-tile--link"
+                  >
+                    Business &#38; Economics
+                  </Link>
+                </div>
+                <div className="genre-tile">
+                  <Link
+                    to={{
+                      pathname: "/category",
+                      search: `?genre=${encodeURIComponent("Textbook")}`,
+                    }}
+                    className="nav-link genre-tile--link"
+                  >
+                    Textbook
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -179,6 +249,7 @@ export default function Home() {
             <div className="home-page-section__subtitle">
               Bestsellers{" "}
               <button className="btn btn--sm btn--rounded btn--link btn-see-all--link">
+                {/* <Link to="/bestsellers" className="nav-link"> */}
                 See All{" "}
                 <svg
                   width="24"
@@ -192,6 +263,7 @@ export default function Home() {
                     // fill="#333333"
                   />
                 </svg>
+                {/* </Link> */}
               </button>
             </div>
             <div className="home-page-section__content">
