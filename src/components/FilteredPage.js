@@ -32,7 +32,8 @@ export default function FilteredPage({
     state: { genres },
     dispatch: dataDispatch,
   } = useData();
-  const [trendingBooks, setTrendingBooks] = useState([]);
+  // const [trendingBooks, setTrendingBooks] = useState([]);
+  const [books, setBooks] = useState([]);
   const [query] = useState(useQuery());
   // const [searchParams] = useState(useLocation().search);
   // console.log(useLocation());
@@ -116,7 +117,7 @@ export default function FilteredPage({
         }`
       );
       if (success) {
-        setTrendingBooks([...paginatedBooks.books]);
+        setBooks([...paginatedBooks.books]);
         setPaginationData((prevData) => {
           return {
             ...prevData,
@@ -283,6 +284,21 @@ export default function FilteredPage({
         genres: [],
       };
     });
+  };
+
+  const getCurrentStartIndex = () => {
+    return (
+      paginationData.results * (paginationData.currentPage - 1) +
+      (books.length > 0 ? 1 : 0)
+    );
+  };
+  const getCurrentEndIndex = () => {
+    const endIndex =
+      paginationData.results * paginationData.currentPage >
+      paginationData.totalResults
+        ? paginationData.totalResults
+        : paginationData.results * paginationData.currentPage;
+    return endIndex;
   };
 
   useEffect(() => {
@@ -869,13 +885,15 @@ export default function FilteredPage({
             <div className="filtered-showing-number-wrapper">
               Showing:{" "}
               <span>
-                {paginationData.results * (paginationData.currentPage - 1) + 1}{" "}
+                {getCurrentStartIndex()} - {getCurrentEndIndex()} of{" "}
+                {paginationData.totalResults}
+                {/* {paginationData.results * (paginationData.currentPage - 1) + 1}{" "}
                 -{" "}
                 {paginationData.results * paginationData.currentPage >
                 paginationData.totalResults
                   ? paginationData.totalResults
                   : paginationData.results * paginationData.currentPage}{" "}
-                of {paginationData.totalResults}
+                of {paginationData.totalResults} */}
               </span>
               Products
             </div>
@@ -1161,7 +1179,7 @@ export default function FilteredPage({
           <div className="filtered-page-section__content">
             <ThumbnailView
               // booksData={trendingBooksData}
-              booksData={trendingBooks}
+              booksData={books}
               // maxDisplay={6}
               maxBooksInRow={3}
               title={title}
