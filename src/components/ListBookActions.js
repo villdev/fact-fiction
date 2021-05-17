@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 import { useData } from "../context/DataProvider";
 import { successNotification, successRemoveNotification } from "../utils/toast";
 import ClampLines from "react-clamp-lines";
@@ -12,6 +13,8 @@ export default function ListBookActions({
 }) {
   // console.log(book);
   const [bookQuantity, setBookQuantity] = useState(quantity);
+  const [wishlistReqLoading, setWishlistReqLoading] = useState(false);
+  const [cartReqLoading, setCartReqLoading] = useState(false);
   const {
     state: { wishlist, cart },
     dispatch: dataDispatch,
@@ -24,9 +27,11 @@ export default function ListBookActions({
   const updateCart = async (
     action,
     modifiedQuantity,
-    showNotification = true
+    showNotification = true,
+    showLoader = true
   ) => {
     try {
+      if (showLoader) setCartReqLoading(true);
       const postBody = {
         action,
         bookId: book._id,
@@ -54,6 +59,7 @@ export default function ListBookActions({
               successRemoveNotification("Removed from cart!");
             }
           }
+          setCartReqLoading(false);
         });
     } catch (error) {
       console.error(error);
@@ -66,7 +72,7 @@ export default function ListBookActions({
         prevQuantity + value !== 0 &&
         prevQuantity + value !== book.formats[0].stock + 1
       ) {
-        updateCart("UPDATE_QUANTITY", prevQuantity + value);
+        updateCart("UPDATE_QUANTITY", prevQuantity + value, false, false);
         return prevQuantity + value;
       } else {
         return prevQuantity;
@@ -74,14 +80,32 @@ export default function ListBookActions({
     });
   };
 
-  const moveToWishlist = () => {
-    updateWishlist("ADD_TO_WISHLIST", false);
-    updateCart("REMOVE_FROM_CART", 1, false);
-    successNotification("Moved to wishlist!");
+  const addToCart = () => {
+    if (!cartReqLoading) updateCart("ADD_TO_CART", 1);
+  };
+  const removeFromCart = () => {
+    if (!cartReqLoading) updateCart("REMOVE_FROM_CART");
   };
 
-  const updateWishlist = async (action, showNotification = true) => {
+  const moveToWishlist = () => {
+    if (!cartReqLoading && !wishlistReqLoading) {
+      updateWishlist("ADD_TO_WISHLIST", false);
+      updateCart("REMOVE_FROM_CART", 1, false, false);
+      successNotification("Moved to wishlist!");
+    }
+  };
+
+  const removeFromWishlist = () => {
+    if (!wishlistReqLoading) updateWishlist("REMOVE_FROM_WISHLIST");
+  };
+
+  const updateWishlist = async (
+    action,
+    showNotification = true,
+    showLoader = true
+  ) => {
     try {
+      if (showLoader) setWishlistReqLoading(true);
       const postBody = {
         action,
         bookId: book._id,
@@ -102,6 +126,7 @@ export default function ListBookActions({
               successRemoveNotification("Removed from wishlist!");
             }
           }
+          setWishlistReqLoading(false);
         });
     } catch (error) {
       console.error(error);
@@ -164,14 +189,30 @@ export default function ListBookActions({
               className="btn btn--dark btn--sm btn--outlined btn-move-to-wishlist"
               onClick={moveToWishlist}
             >
-              Move to Wishlist
+              {wishlistReqLoading ? (
+                <ClipLoader
+                  color={"#a0a0a0"}
+                  loading={wishlistReqLoading}
+                  size={24}
+                />
+              ) : (
+                "Move to Wishlist"
+              )}
             </button>
             {/* <button className="btn btn--dark btn--sm btn-remove">Remove</button> */}
             <button
               className="btn btn--danger btn--sm btn-remove"
-              onClick={() => updateCart("REMOVE_FROM_CART")}
+              onClick={removeFromCart}
             >
-              Remove
+              {cartReqLoading ? (
+                <ClipLoader
+                  color={"#f5f5f5"}
+                  loading={cartReqLoading}
+                  size={24}
+                />
+              ) : (
+                "Remove"
+              )}
             </button>
           </div>
         </div>
@@ -219,16 +260,32 @@ export default function ListBookActions({
           <div className="actions-wrapper">
             <button
               className="btn btn--dark btn--sm btn--outlined btn-move-to-cart"
-              onClick={() => updateCart("ADD_TO_CART", 1)}
+              onClick={addToCart}
             >
-              Add to Cart
+              {cartReqLoading ? (
+                <ClipLoader
+                  color={"#a0a0a0"}
+                  loading={cartReqLoading}
+                  size={24}
+                />
+              ) : (
+                "Add to Cart"
+              )}
             </button>
             {/* <button className="btn btn--dark btn--sm btn-remove">Remove</button> */}
             <button
               className="btn btn--danger btn--sm btn-remove"
-              onClick={() => updateWishlist("REMOVE_FROM_WISHLIST")}
+              onClick={removeFromWishlist}
             >
-              Remove
+              {wishlistReqLoading ? (
+                <ClipLoader
+                  color={"#f5f5f5"}
+                  loading={wishlistReqLoading}
+                  size={24}
+                />
+              ) : (
+                "Remove"
+              )}
             </button>
           </div>
         </div>

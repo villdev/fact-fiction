@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
+import PuffLoader from "react-spinners/PuffLoader";
 import { useData } from "../context/DataProvider";
 import { useParams } from "react-router-dom";
 import Header from "../components/Header";
@@ -15,6 +17,8 @@ import { productData as booa } from "../components/productData";
 export default function Book() {
   // const similarBooksData = [...booa];
   const [bookQuantity, setBookQuantity] = useState(1);
+  const [wishlistReqLoading, setWishlistReqLoading] = useState(false);
+  const [cartReqLoading, setCartReqLoading] = useState(false);
   const {
     state: { wishlist, cart },
     dispatch: dataDispatch,
@@ -49,9 +53,11 @@ export default function Book() {
   const updateCart = async (
     action,
     modifiedQuantity,
-    showNotification = true
+    showNotification = true,
+    showLoader = true
   ) => {
     try {
+      if (showLoader) setCartReqLoading(true);
       const postBody = {
         action,
         bookId: book._id,
@@ -79,6 +85,7 @@ export default function Book() {
               successRemoveNotification("Removed from cart!");
             }
           }
+          setCartReqLoading(false);
         });
     } catch (error) {
       console.error(error);
@@ -86,12 +93,25 @@ export default function Book() {
   };
 
   const addToCart = (action, modifiedQuantity, showNotification = true) => {
-    updateCart(action, modifiedQuantity, showNotification);
-    setBookQuantity(1);
+    if (!cartReqLoading) {
+      updateCart(action, modifiedQuantity, showNotification);
+      setBookQuantity(1);
+    }
+  };
+  const toggleWishlist = () => {
+    if (!wishlistReqLoading) {
+      if (presentInWishlist(book._id)) updateWishlist("REMOVE_FROM_WISHLIST");
+      else updateWishlist("ADD_TO_WISHLIST");
+    }
   };
 
-  const updateWishlist = async (action, showNotification = true) => {
+  const updateWishlist = async (
+    action,
+    showNotification = true,
+    showLoader = true
+  ) => {
     try {
+      if (showLoader) setWishlistReqLoading(true);
       const postBody = {
         action,
         bookId: book._id,
@@ -112,6 +132,7 @@ export default function Book() {
               successRemoveNotification("Removed from wishlist!");
             }
           }
+          setWishlistReqLoading(false);
         });
     } catch (error) {
       console.error(error);
@@ -259,27 +280,37 @@ export default function Book() {
                       Wishlist:{" "}
                       <div
                         className="book-wishlist-btn"
-                        onClick={() => {
-                          return presentInWishlist(book._id)
-                            ? updateWishlist("REMOVE_FROM_WISHLIST")
-                            : updateWishlist("ADD_TO_WISHLIST");
-                        }}
+                        onClick={toggleWishlist}
                       >
-                        <svg
-                          className="book-like-icon"
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill={
-                            presentInWishlist(book._id) ? "#dc2626" : "#a0a0a0"
-                          }
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"
-                            // fill="#333333"
+                        {wishlistReqLoading ? (
+                          <PuffLoader
+                            color={
+                              presentInWishlist(book._id)
+                                ? "#a0a0a0"
+                                : "#dc2626"
+                            }
+                            loading={wishlistReqLoading}
+                            size={24}
                           />
-                        </svg>
+                        ) : (
+                          <svg
+                            className="book-like-icon"
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill={
+                              presentInWishlist(book._id)
+                                ? "#dc2626"
+                                : "#a0a0a0"
+                            }
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z"
+                              // fill="#333333"
+                            />
+                          </svg>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -326,7 +357,16 @@ export default function Book() {
                         className="btn btn--black btn--outlined btn--sm btn-add-to-cart"
                         onClick={() => addToCart("ADD_TO_CART", bookQuantity)}
                       >
-                        Add to Cart
+                        {cartReqLoading ? (
+                          <ClipLoader
+                            // color={"#1F2937"}
+                            color={"#a0a0a0"}
+                            loading={cartReqLoading}
+                            size={24}
+                          />
+                        ) : (
+                          "Add to Cart"
+                        )}
                       </button>
                     )}
                     {/* <button

@@ -101,7 +101,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 /* -----------------------------header----------------------------------------- */
@@ -582,6 +582,7 @@ header {
   position: absolute;
   height: 2px;
   width: 100%;
+  overflow-x: hidden;
   /* background-color: var(--black-color); */
   /* background-color: red; */
   /* animation: animateBg 4s linear infinite;
@@ -2650,8 +2651,15 @@ footer {
   color: var(--black-color);
   letter-spacing: 0.5px;
 }
+.btn-move-to-wishlist {
+  width: 180px;
+}
+.btn-move-to-cart {
+  width: 180px;
+}
 .btn-remove {
   margin-left: 0.8rem;
+  width: 90px;
 }
 .cart-summary-wrapper {
   /* margin-top: 3.5rem; */
