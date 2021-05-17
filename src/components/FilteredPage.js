@@ -34,7 +34,8 @@ export default function FilteredPage({
   } = useData();
   // const [trendingBooks, setTrendingBooks] = useState([]);
   const [books, setBooks] = useState([]);
-  const [query] = useState(useQuery());
+  // const [query] = useState(useQuery());
+  const query = useQuery();
   // const [searchParams] = useState(useLocation().search);
   // console.log(useLocation());
   // const query = useQuery();
@@ -44,6 +45,7 @@ export default function FilteredPage({
   const priceMin = query.get("priceMin");
   const priceMax = query.get("priceMax");
   const genreQuery = query.getAll("genre");
+  console.log(genreQuery);
   const searchQuery =
     useLocation().pathname === "/search" ? query.get("s") : "";
   // const discountQuery = query.get("discount");
@@ -60,14 +62,19 @@ export default function FilteredPage({
     parseInt(priceMax) || 5000,
   ]);
   const [filters, setFilters] = useState({
-    priceRange: [priceRangeValues[0], priceRangeValues[1]],
+    // priceRange: [priceRangeValues[0], priceRangeValues[1]],
+    priceRange: [
+      parseInt(priceMin) || priceRangeValues[0],
+      parseInt(priceMax) || priceRangeValues[1],
+    ],
     genres: genreQuery || [],
     // genres: [],
     rating: 0,
     language: "",
-    discount: 0,
+    discount: parseInt(discountQuery) || 0,
     excludeOutOfStock: false,
-    format: "Paperback",
+    // format: "Paperback",
+    format: "",
     searchQuery: searchQuery || "",
   });
 
@@ -311,30 +318,38 @@ export default function FilteredPage({
     filters,
   ]);
 
+  // useEffect(() => {
+  //   setPaginationData({
+  //     currentPage: parseInt(currentPage) || 1,
+  //     results: parseInt(resultsPerPage) || 12,
+  //     totalResults: 1,
+  //     sort: sortQuery || "",
+  //   });
+  //   setPriceRangeValues([parseInt(priceMin) || 0, parseInt(priceMax) || 5000]);
+  //   setFilters({
+  //     // priceRange: [priceRangeValues[0], priceRangeValues[1]],
+  //     priceRange: [
+  //       parseInt(priceMin) || priceRangeValues[0],
+  //       parseInt(priceMax) || priceRangeValues[1],
+  //     ],
+  //     genres: genreQuery || [],
+  //     rating: 0,
+  //     language: "",
+  //     discount: parseInt(discountQuery) || 0,
+  //     excludeOutOfStock: false,
+  //     // format: "Paperback",
+  //     format: "",
+  //     searchQuery: searchQuery || "",
+  //   });
+  // }, [query]);
   useEffect(() => {
-    setPaginationData({
-      currentPage: parseInt(currentPage) || 1,
-      results: parseInt(resultsPerPage) || 12,
-      totalResults: 1,
-      sort: sortQuery || "",
+    setFilters((prevFilters) => {
+      return {
+        ...prevFilters,
+        genres: genreQuery || [],
+      };
     });
-    setPriceRangeValues([parseInt(priceMin) || 0, parseInt(priceMax) || 5000]);
-    setFilters({
-      // priceRange: [priceRangeValues[0], priceRangeValues[1]],
-      priceRange: [
-        parseInt(priceMin) || priceRangeValues[0],
-        parseInt(priceMax) || priceRangeValues[1],
-      ],
-      genres: genreQuery || [],
-      rating: 0,
-      language: "",
-      discount: parseInt(discountQuery) || 0,
-      excludeOutOfStock: false,
-      // format: "Paperback",
-      format: "",
-      searchQuery: searchQuery || "",
-    });
-  }, [query]);
+  }, [genreQuery[0]]);
 
   return (
     <div className="filtered-page-wrapper container-75">

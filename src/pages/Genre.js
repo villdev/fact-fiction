@@ -7,7 +7,11 @@ export default function Genre() {
   return (
     <>
       <Header />
-      <FilteredPage title={"Genre"} link={""} pathHistory={["Home", "Genre"]} />
+      <FilteredPage
+        title={"Category"}
+        link={""}
+        pathHistory={["Home", "Genre"]}
+      />
       <Footer />
     </>
   );

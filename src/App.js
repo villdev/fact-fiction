@@ -110,7 +110,6 @@ export default function App() {
 
   useEffect(() => {
     if (banners.length === 0) {
-      console.log("test");
       getBanners();
       getGenres();
       getUserDetails();

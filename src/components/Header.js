@@ -257,9 +257,7 @@ export default function Header() {
                     {cart.items.length}
                   </span>
                 )}
-                {/* <span className="badge bg-gray-300 text-black">1</span> */}
               </div>
-              {/* Cart - <div className="cart-price">₹1000.00</div> */}
               Cart -{" "}
               <div className="cart-price">₹{(+cart.total).toFixed(2)}</div>
             </div>
@@ -350,20 +348,19 @@ export default function Header() {
               </svg>
               <div className="nav-dropdown">
                 <ul>
-                  {/* {console.log(genres)} */}
                   {genres.map((genre) => (
-                    // <Link
-                    //   to={{
-                    //     pathname: "/category",
-                    //     search: `?genre=${encodeURIComponent(genre.name)}`,
-                    //   }}
-                    //   className="nav-link header-nav-link"
-                    //   key={genre._id}
-                    // >
-                    <li key={genre._id} className="nav-dropdown__item">
-                      {genre.name}
-                    </li>
-                    // </Link>
+                    <Link
+                      to={{
+                        pathname: "/category",
+                        search: `?genre=${encodeURIComponent(genre.name)}`,
+                      }}
+                      className="nav-link header-nav-link"
+                      key={genre._id}
+                    >
+                      <li key={genre._id} className="nav-dropdown__item">
+                        {genre.name}
+                      </li>
+                    </Link>
                   ))}
                 </ul>
               </div>
