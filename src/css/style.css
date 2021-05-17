@@ -1509,6 +1509,7 @@ footer {
   justify-content: center;
   margin-bottom: 0.5rem;
   border: 1px solid var(--bg);
+  cursor: pointer;
 }
 .book-cover--active {
   border: 1px solid var(--border);
@@ -1844,6 +1845,7 @@ footer {
   font-weight: 500;
   font-size: 1.2rem;
   margin-bottom: 0.875rem;
+  white-space: nowrap;
 }
 /* todo changed order using flex for below 2 styles */
 .product-display__misc-details {
@@ -2669,14 +2671,14 @@ footer {
   letter-spacing: 0.5px;
 }
 .btn-move-to-wishlist {
-  width: 180px;
+  width: 175px;
 }
 .btn-move-to-cart {
   width: 180px;
 }
 .btn-remove {
   margin-left: 0.8rem;
-  width: 90px;
+  width: 80px;
 }
 .cart-summary-wrapper {
   /* margin-top: 3.5rem; */
@@ -3202,6 +3204,14 @@ footer {
   flex-basis: 56%;
 }
 
+@media (max-width: 1660px) {
+  .header-container-75 {
+    width: 80%;
+  }
+  .container-75 {
+    width: 80%;
+  }
+}
 @media (max-width: 1536px) {
   .header-container-75 {
     width: 85%;
@@ -3290,6 +3300,16 @@ footer {
   .btn-set-price-range {
     margin-left: 1rem;
   }
+  .cart-page__content {
+    display: block;
+  }
+  .cart-summary-wrapper {
+    margin-top: 4rem;
+    margin-left: 0;
+  }
+  .btn-checkout {
+    justify-content: center;
+  }
 }
 @media (max-width: 1280px) {
   .header-container-75 {
@@ -3350,9 +3370,25 @@ footer {
   .btn-set-price-range {
     margin-left: 0.75rem;
   }
+  .book-cover-display {
+    padding: 2.75rem 3.75rem;
+  }
+  .book-cover-display > img {
+    width: 175px;
+    height: 275px;
+  }
 }
 @media (max-width: 1024px) {
   .thumbnail-view {
+    /* grid-template-columns: repeat(2, 1fr); */
+  }
+}
+@media (max-width: 768px) {
+  .thumbnail-view {
+    /* grid-template-columns: repeat(1, 0.8fr); */
     grid-template-columns: repeat(1, 1fr);
+  }
+  .btn-checkout {
+    justify-content: space-between;
   }
 }

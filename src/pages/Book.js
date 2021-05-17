@@ -174,7 +174,7 @@ export default function Book() {
   useEffect(() => {
     getBook();
     getSimilarBooks();
-  }, []);
+  }, [bookId]);
   return (
     <>
       <Header />
@@ -415,7 +415,7 @@ export default function Book() {
                         Publish Date:
                       </div>
                       <div className="book-misc-detail__content">
-                        {book.publishDate}
+                        {book.publishDate.slice(0, -14)}
                       </div>
                     </div>
                     <div className="book-misc-detail">
