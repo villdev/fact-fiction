@@ -24,11 +24,6 @@ import Checkout from "./pages/Checkout";
 import Wishlist from "./pages/Wishlist";
 import Book from "./pages/Book";
 
-// const axiosInstance = axios.create({
-//   baseURL: "http://localhost:3000",
-//   // withCredentials: true,
-// });
-
 export default function App() {
   const {
     state: { tempUserId },
@@ -47,9 +42,6 @@ export default function App() {
         const {
           data: { success, banners: allBanners },
         } = await axios.get("https://fact-fiction.herokuapp.com/banners");
-        // const {
-        //   data: { success, banners: allBanners },
-        // } = await axiosInstance.get("/banners");
         if (success) {
           dataDispatch({
             type: "STORE_BANNERS",
@@ -67,9 +59,6 @@ export default function App() {
         const {
           data: { success, genres: allGenres },
         } = await axios.get("https://fact-fiction.herokuapp.com/genres");
-        // const {
-        //   data: { success, genres: allGenres },
-        // } = await axiosInstance.get("/genres");
         if (success) {
           dataDispatch({
             type: "STORE_GENRES",
@@ -134,8 +123,6 @@ export default function App() {
           <Route path="/bestsellers" element={<Bestsellers />} />
 
           <Route path="/category" element={<Genre />} />
-          {/* <Route path="/genre" element={<Genre />} /> */}
-          {/* <Route path="/genre/:id" element={<Genre />} /> */}
 
           <Route path="/trending" element={<Trending />} />
 

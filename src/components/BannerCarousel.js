@@ -9,8 +9,10 @@ export default function BannerCarousel({ content }) {
       <CarouselProvider
         visibleSlides={1}
         step={1}
-        naturalSlideWidth={600}
-        naturalSlideHeight={220}
+        naturalSlideWidth={400}
+        naturalSlideHeight={400}
+        // naturalSlideWidth={600}
+        // naturalSlideHeight={220}
         totalSlides={content.length}
         // lockOnWindowScroll
         isPlaying={content.length > 1}
@@ -24,18 +26,6 @@ export default function BannerCarousel({ content }) {
               <Banner bannerContent={banner} />
             </Slide>
           ))}
-          {/* <Slide className="banner-slide" index={0}>
-            <Banner bannerContent={content[0]} />
-          </Slide>
-          <Slide className="banner-slide" index={1}>
-            <Banner bannerContent={content[1]} />
-          </Slide>
-          <Slide className="banner-slide" index={2}>
-            <Banner bannerContent={content[2]} />
-          </Slide>
-          <Slide className="banner-slide" index={3}>
-            <Banner bannerContent={content[3]} />
-          </Slide> */}
         </Slider>
         {/* <DotGroup className="banner-dot" /> */}
         {content.length > 1 && <DotGroup className="banner-dot" />}

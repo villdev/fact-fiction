@@ -82,7 +82,6 @@ export default function Home() {
     <>
       <Header />
       <div className="home-page-wrapper container-75">
-        {/* {banners.length > 0 && <BannerCarousel content={banners} />} */}
         <BannerCarousel content={banners} />
         <div className="featured-cards-wrapper">
           <div className="featured-card">
@@ -343,8 +342,7 @@ export default function Home() {
             />
           </div>
         </div>
-        {/* {banners.length > 0 && <BannerCarousel content={banners.slice(0, 1)} />} */}
-        {banners.length > 0 && <BannerCarousel content={[banners[2]]} />}
+        {/* {banners.length > 0 && <BannerCarousel content={[banners[2]]} />} */}
       </div>
       <Footer />
     </>

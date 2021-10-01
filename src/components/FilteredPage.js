@@ -5,6 +5,7 @@ import { useData } from "../context/DataProvider";
 import Path from "./Path";
 import ThumbnailView from "./ThumbnailView";
 import ClampLines from "react-clamp-lines";
+import { useMediaQuery } from "react-responsive";
 
 // import { Range } from "rc-slider";
 import Slider from "rc-slider";
@@ -78,6 +79,8 @@ export default function FilteredPage({
     searchQuery: searchQuery || "",
   });
 
+  const isDesktopOrLaptop = useMediaQuery({ minWidth: 1024 });
+
   const getGenreSearchParams = (changedGenre) => {
     let genreSearchParams = "";
     const changedGenreIndex = filters.genres.findIndex(
@@ -140,19 +143,6 @@ export default function FilteredPage({
   const setPriceRange = (sliderValues) => {
     setPriceRangeValues(sliderValues);
   };
-  // const setMinPriceRange = (sliderEvent) => {
-  //   console.log(sliderEvent);
-  //   setPriceRangeValues((prevValues) => [
-  //     +sliderEvent.target.value.slice(1),
-  //     prevValues[1],
-  //   ]);
-  // };
-  // const setMaxPriceRange = (sliderEvent) => {
-  //   setPriceRangeValues((prevValues) => [
-  //     prevValues[0],
-  //     +sliderEvent.target.value.slice(1),
-  //   ]);
-  // };
   const changeResultsPerPage = (resultsPerPage) => {
     setPaginationData((prevData) => {
       return {
@@ -318,30 +308,6 @@ export default function FilteredPage({
     filters,
   ]);
 
-  // useEffect(() => {
-  //   setPaginationData({
-  //     currentPage: parseInt(currentPage) || 1,
-  //     results: parseInt(resultsPerPage) || 12,
-  //     totalResults: 1,
-  //     sort: sortQuery || "",
-  //   });
-  //   setPriceRangeValues([parseInt(priceMin) || 0, parseInt(priceMax) || 5000]);
-  //   setFilters({
-  //     // priceRange: [priceRangeValues[0], priceRangeValues[1]],
-  //     priceRange: [
-  //       parseInt(priceMin) || priceRangeValues[0],
-  //       parseInt(priceMax) || priceRangeValues[1],
-  //     ],
-  //     genres: genreQuery || [],
-  //     rating: 0,
-  //     language: "",
-  //     discount: parseInt(discountQuery) || 0,
-  //     excludeOutOfStock: false,
-  //     // format: "Paperback",
-  //     format: "",
-  //     searchQuery: searchQuery || "",
-  //   });
-  // }, [query]);
   useEffect(() => {
     setFilters((prevFilters) => {
       return {
@@ -356,115 +322,30 @@ export default function FilteredPage({
       {/* <Path pathHistory={["Home", "Trending"]} /> */}
       <Path pathHistory={pathHistory} />
       <div className="filtered-page">
-        <div className="filter-section-wrapper">
-          {/* <div className="filter-section__header">Filters</div> */}
-          <div className="filters-reset-wrapper">
+        {isDesktopOrLaptop && (
+          <div className="filter-section-wrapper">
             {/* <div className="filter-section__header">Filters</div> */}
-            <Link
-              to={{
-                pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                search: `?sort=${paginationData.sort}&page=${1}&results=${
-                  paginationData.results
-                }${getGenreSearchParams("")}`,
-              }}
-              replace={true}
-              className="filters-reset-btn--link"
-              onClick={resetFilters}
-            >
-              <div className="filters-reset-btn">Reset All Filters</div>
-            </Link>
-            <div className="filters-applied-wrapper">
-              {filters.searchQuery !== "" && (
-                <div className="filter-applied">
-                  <div className="filter-applied__header">Search:</div>
-                  <div className="filter-applied__content">
-                    <div className="filter-applied__details">
-                      <Link
-                        to={{
-                          pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                          search: `?sort=${
-                            paginationData.sort
-                          }&page=${1}&results=${
-                            paginationData.results
-                          }&priceMin=0&priceMax=5000${getGenreSearchParams(
-                            ""
-                          )}`,
-                        }}
-                        replace={true}
-                        // className="nav-link"
-                        // key={genre._id}
-                        onClick={resetSearchQuery}
-                      >
-                        <div className="remove-filter-applied">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                              // fill="#333333"
-                            />
-                          </svg>
-                        </div>
-                      </Link>
-                      {filters.searchQuery}
-                    </div>
-                  </div>
-                </div>
-              )}
-              {!(
-                filters.priceRange[0] === 0 && filters.priceRange[1] === 5000
-              ) && (
-                <div className="filter-applied">
-                  <div className="filter-applied__header">Price Range:</div>
-                  <div className="filter-applied__content">
-                    <div className="filter-applied__details">
-                      <Link
-                        to={{
-                          pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                          search: `?sort=${
-                            paginationData.sort
-                          }&page=${1}&results=${
-                            paginationData.results
-                          }&priceMin=0&priceMax=5000${getGenreSearchParams(
-                            ""
-                          )}`,
-                        }}
-                        replace={true}
-                        // className="nav-link"
-                        // key={genre._id}
-                        onClick={() => resetPriceRange()}
-                      >
-                        <div className="remove-filter-applied">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                              // fill="#333333"
-                            />
-                          </svg>
-                        </div>
-                      </Link>
-                      ₹{filters.priceRange[0]} - ₹{filters.priceRange[1]}
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {filters.genres[0] && (
-                <div className="filter-applied">
-                  <div className="filter-applied__header">Genre:</div>
-                  <div className="filter-applied__content">
-                    {filters.genres.map((genre, index) => (
-                      <div key={index} className="filter-applied__details">
+            <div className="filters-reset-wrapper">
+              {/* <div className="filter-section__header">Filters</div> */}
+              <Link
+                to={{
+                  pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                  search: `?sort=${paginationData.sort}&page=${1}&results=${
+                    paginationData.results
+                  }${getGenreSearchParams("")}`,
+                }}
+                replace={true}
+                className="filters-reset-btn--link"
+                onClick={resetFilters}
+              >
+                <div className="filters-reset-btn">Reset All Filters</div>
+              </Link>
+              <div className="filters-applied-wrapper">
+                {filters.searchQuery !== "" && (
+                  <div className="filter-applied">
+                    <div className="filter-applied__header">Search:</div>
+                    <div className="filter-applied__content">
+                      <div className="filter-applied__details">
                         <Link
                           to={{
                             pathname: `/${title.toLowerCase().split(" ")[0]}`,
@@ -472,14 +353,14 @@ export default function FilteredPage({
                               paginationData.sort
                             }&page=${1}&results=${
                               paginationData.results
-                            }&priceMin=${filters.priceRange[0]}&priceMax=${
-                              filters.priceRange[1]
-                            }${getGenreSearchParams(genre)}`,
+                            }&priceMin=0&priceMax=5000${getGenreSearchParams(
+                              ""
+                            )}`,
                           }}
                           replace={true}
                           // className="nav-link"
                           // key={genre._id}
-                          onClick={() => toggleGenre(genre)}
+                          onClick={resetSearchQuery}
                         >
                           <div className="remove-filter-applied">
                             <svg
@@ -496,173 +377,325 @@ export default function FilteredPage({
                             </svg>
                           </div>
                         </Link>
-                        {genre}
+                        {filters.searchQuery}
                       </div>
-                    ))}
+                    </div>
                   </div>
-                </div>
-              )}
-              {filters.language !== "" && (
-                <div className="filter-applied">
-                  <div className="filter-applied__header">Language:</div>
-                  <div className="filter-applied__content">
-                    <div className="filter-applied__details">
-                      <div className="remove-filter-applied">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
+                )}
+                {!(
+                  filters.priceRange[0] === 0 && filters.priceRange[1] === 5000
+                ) && (
+                  <div className="filter-applied">
+                    <div className="filter-applied__header">Price Range:</div>
+                    <div className="filter-applied__content">
+                      <div className="filter-applied__details">
+                        <Link
+                          to={{
+                            pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                            search: `?sort=${
+                              paginationData.sort
+                            }&page=${1}&results=${
+                              paginationData.results
+                            }&priceMin=0&priceMax=5000${getGenreSearchParams(
+                              ""
+                            )}`,
+                          }}
+                          replace={true}
+                          // className="nav-link"
+                          // key={genre._id}
+                          onClick={() => resetPriceRange()}
                         >
-                          <path
-                            d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                            // fill="#333333"
-                          />
-                        </svg>
+                          <div className="remove-filter-applied">
+                            <svg
+                              width="24"
+                              height="24"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                                // fill="#333333"
+                              />
+                            </svg>
+                          </div>
+                        </Link>
+                        ₹{filters.priceRange[0]} - ₹{filters.priceRange[1]}
                       </div>
-                      {filters.language}
                     </div>
                   </div>
-                </div>
-              )}
-              {filters.discount !== 0 && (
-                <div className="filter-applied">
-                  <div className="filter-applied__header">Discount:</div>
-                  <div className="filter-applied__content">
-                    <div className="filter-applied__details">
-                      <div className="remove-filter-applied">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                            // fill="#333333"
-                          />
-                        </svg>
+                )}
+
+                {filters.genres[0] && (
+                  <div className="filter-applied">
+                    <div className="filter-applied__header">Genre:</div>
+                    <div className="filter-applied__content">
+                      {filters.genres.map((genre, index) => (
+                        <div key={index} className="filter-applied__details">
+                          <Link
+                            to={{
+                              pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                              search: `?sort=${
+                                paginationData.sort
+                              }&page=${1}&results=${
+                                paginationData.results
+                              }&priceMin=${filters.priceRange[0]}&priceMax=${
+                                filters.priceRange[1]
+                              }${getGenreSearchParams(genre)}`,
+                            }}
+                            replace={true}
+                            // className="nav-link"
+                            // key={genre._id}
+                            onClick={() => toggleGenre(genre)}
+                          >
+                            <div className="remove-filter-applied">
+                              <svg
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                                  // fill="#333333"
+                                />
+                              </svg>
+                            </div>
+                          </Link>
+                          {genre}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {filters.language !== "" && (
+                  <div className="filter-applied">
+                    <div className="filter-applied__header">Language:</div>
+                    <div className="filter-applied__content">
+                      <div className="filter-applied__details">
+                        <div className="remove-filter-applied">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                              // fill="#333333"
+                            />
+                          </svg>
+                        </div>
+                        {filters.language}
                       </div>
-                      {filters.discount}% or more
                     </div>
                   </div>
-                </div>
-              )}
-              {filters.format !== "" && (
-                <div className="filter-applied">
-                  <div className="filter-applied__header">Format:</div>
-                  <div className="filter-applied__content">
-                    <div className="filter-applied__details">
-                      <div className="remove-filter-applied">
-                        <svg
-                          width="24"
-                          height="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                            // fill="#333333"
-                          />
-                        </svg>
+                )}
+                {filters.discount !== 0 && (
+                  <div className="filter-applied">
+                    <div className="filter-applied__header">Discount:</div>
+                    <div className="filter-applied__content">
+                      <div className="filter-applied__details">
+                        <div className="remove-filter-applied">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                              // fill="#333333"
+                            />
+                          </svg>
+                        </div>
+                        {filters.discount}% or more
                       </div>
-                      {filters.format}
                     </div>
                   </div>
-                </div>
-              )}
-              {/* <div className="filter-applied">
-                <div className="filter-applied__header">Format:</div>
-                <div className="filter-applied__content">
-                  <div className="filter-applied__details">
-                    <div className="remove-filter-applied">
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
-                          // fill="#333333"
-                        />
-                      </svg>
+                )}
+                {filters.format !== "" && (
+                  <div className="filter-applied">
+                    <div className="filter-applied__header">Format:</div>
+                    <div className="filter-applied__content">
+                      <div className="filter-applied__details">
+                        <div className="remove-filter-applied">
+                          <svg
+                            width="24"
+                            height="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M18.3 5.71C18.2075 5.6173 18.0976 5.54375 17.9766 5.49357C17.8556 5.44338 17.726 5.41755 17.595 5.41755C17.464 5.41755 17.3343 5.44338 17.2134 5.49357C17.0924 5.54375 16.9825 5.6173 16.89 5.71L12 10.59L7.10999 5.7C7.01741 5.60742 6.9075 5.53398 6.78654 5.48387C6.66557 5.43377 6.53593 5.40798 6.40499 5.40798C6.27406 5.40798 6.14442 5.43377 6.02345 5.48387C5.90249 5.53398 5.79258 5.60742 5.69999 5.7C5.60741 5.79258 5.53397 5.90249 5.48387 6.02346C5.43376 6.14442 5.40797 6.27407 5.40797 6.405C5.40797 6.53593 5.43376 6.66558 5.48387 6.78654C5.53397 6.90751 5.60741 7.01742 5.69999 7.11L10.59 12L5.69999 16.89C5.60741 16.9826 5.53397 17.0925 5.48387 17.2135C5.43376 17.3344 5.40797 17.4641 5.40797 17.595C5.40797 17.7259 5.43376 17.8556 5.48387 17.9765C5.53397 18.0975 5.60741 18.2074 5.69999 18.3C5.79258 18.3926 5.90249 18.466 6.02345 18.5161C6.14442 18.5662 6.27406 18.592 6.40499 18.592C6.53593 18.592 6.66557 18.5662 6.78654 18.5161C6.9075 18.466 7.01741 18.3926 7.10999 18.3L12 13.41L16.89 18.3C16.9826 18.3926 17.0925 18.466 17.2135 18.5161C17.3344 18.5662 17.4641 18.592 17.595 18.592C17.7259 18.592 17.8556 18.5662 17.9765 18.5161C18.0975 18.466 18.2074 18.3926 18.3 18.3C18.3926 18.2074 18.466 18.0975 18.5161 17.9765C18.5662 17.8556 18.592 17.7259 18.592 17.595C18.592 17.4641 18.5662 17.3344 18.5161 17.2135C18.466 17.0925 18.3926 16.9826 18.3 16.89L13.41 12L18.3 7.11C18.68 6.73 18.68 6.09 18.3 5.71V5.71Z"
+                              // fill="#333333"
+                            />
+                          </svg>
+                        </div>
+                        {filters.format}
+                      </div>
                     </div>
-                    Paperback
                   </div>
-                </div>
-              </div> */}
-            </div>
-          </div>
-          <div className="filters-wrapper">
-            <div className="filter-wrapper">
-              <div className="filter__header">Price:</div>
-              <div className="filter__content">
-                <Range
-                  min={0}
-                  max={5000}
-                  defaultValue={priceRangeValues}
-                  step={100}
-                  value={priceRangeValues}
-                  onChange={setPriceRange}
-                  tipFormatter={(value) => `₹${value}`}
-                  trackStyle={[
-                    { backgroundColor: "var(--black-color)", height: "3px" },
-                  ]}
-                  railStyle={{
-                    backgroundColor: "var(--border)",
-                    height: "2px",
-                  }}
-                  activeDotStyle={{
-                    border: "1px solid rgba(128,128,128,0.3)",
-                  }}
-                />
-                <div className="range-values-wrapper">
-                  <div className="range-values">
-                    {/* <input
-                      value={`${priceRangeValues[0]}`}
-                      onChange={setMinPriceRange}
-                      className="range-value"
-                    />
-                    <span className="range-separator"></span>
-                    <input
-                      value={`${priceRangeValues[1]}`}
-                      onChange={setMaxPriceRange}
-                      className="range-value"
-                      type="text"
-                    /> */}
-                    <span className="range-value">₹{priceRangeValues[0]}</span>{" "}
-                    <span className="range-separator"></span>
-                    <span className="range-value">₹{priceRangeValues[1]}</span>
-                  </div>
-                  <Link
-                    to={{
-                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                      search: `?sort=${paginationData.sort}&page=${1}&results=${
-                        paginationData.results
-                      }&priceMin=${priceRangeValues[0]}&priceMax=${
-                        priceRangeValues[1]
-                      }${getGenreSearchParams("")}`,
-                    }}
-                    replace={true}
-                    // className="nav-link"
-                    onClick={filterBasedOnRange}
-                  >
-                    <button className="btn btn--black btn--outlined btn--sm btn-set-price-range">
-                      Go
-                    </button>
-                  </Link>
-                </div>
+                )}
               </div>
             </div>
-            <div className="filter-wrapper">
-              <div className="filter__header">Genre:</div>
-              <div className="filter__content">
-                {genres.map((genre) => (
+            <div className="filters-wrapper">
+              <div className="filter-wrapper">
+                <div className="filter__header">Price:</div>
+                <div className="filter__content">
+                  <Range
+                    min={0}
+                    max={5000}
+                    defaultValue={priceRangeValues}
+                    step={100}
+                    value={priceRangeValues}
+                    onChange={setPriceRange}
+                    tipFormatter={(value) => `₹${value}`}
+                    trackStyle={[
+                      { backgroundColor: "var(--black-color)", height: "3px" },
+                    ]}
+                    railStyle={{
+                      backgroundColor: "var(--border)",
+                      height: "2px",
+                    }}
+                    activeDotStyle={{
+                      border: "1px solid rgba(128,128,128,0.3)",
+                    }}
+                  />
+                  <div className="range-values-wrapper">
+                    <div className="range-values">
+                      <span className="range-value">
+                        ₹{priceRangeValues[0]}
+                      </span>{" "}
+                      <span className="range-separator"></span>
+                      <span className="range-value">
+                        ₹{priceRangeValues[1]}
+                      </span>
+                    </div>
+                    <Link
+                      to={{
+                        pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                        search: `?sort=${
+                          paginationData.sort
+                        }&page=${1}&results=${
+                          paginationData.results
+                        }&priceMin=${priceRangeValues[0]}&priceMax=${
+                          priceRangeValues[1]
+                        }${getGenreSearchParams("")}`,
+                      }}
+                      replace={true}
+                      // className="nav-link"
+                      onClick={filterBasedOnRange}
+                    >
+                      <button className="btn btn--black btn--outlined btn--sm btn-set-price-range">
+                        Go
+                      </button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className="filter-wrapper">
+                <div className="filter__header">Genre:</div>
+                <div className="filter__content">
+                  {genres.map((genre) => (
+                    <Link
+                      to={{
+                        pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                        search: `?sort=${
+                          paginationData.sort
+                        }&page=${1}&results=${
+                          paginationData.results
+                        }&priceMin=${filters.priceRange[0]}&priceMax=${
+                          filters.priceRange[1]
+                        }${getGenreSearchParams(genre.name)}`,
+                      }}
+                      replace={true}
+                      // className="nav-link"
+                      key={genre._id}
+                      onClick={() => toggleGenre(genre.name)}
+                    >
+                      <div className="filter__content-item">
+                        <label className="input-checkbox">
+                          {/* <input type="checkbox" checked={true} /> */}
+                          <input
+                            type="checkbox"
+                            checked={
+                              filters.genres.findIndex(
+                                (appliedGenre) => appliedGenre == genre.name
+                              ) !== -1
+                            }
+                          />
+                          <span>{genre.name}</span>
+                        </label>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div className="filter-wrapper">
+                <div className="filter__header">Customer Rating:</div>
+                <div className="filter__content">
+                  <div className="filter__content-item">
+                    <label className="input-checkbox">
+                      <input type="checkbox" disabled={true} />
+                      <span>4★ & above</span>
+                    </label>
+                  </div>
+                  <div className="filter__content-item">
+                    {" "}
+                    <label className="input-checkbox">
+                      <input type="checkbox" disabled={true} />
+                      <span>3★ & above</span>
+                    </label>
+                  </div>
+                  <div className="filter__content-item">
+                    {" "}
+                    <label className="input-checkbox">
+                      <input type="checkbox" disabled={true} />
+                      <span>2★ & above</span>
+                    </label>
+                  </div>
+                  <div className="filter__content-item">
+                    {" "}
+                    <label className="input-checkbox">
+                      <input type="checkbox" disabled={true} />
+                      <span>1★ & above</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="filter-wrapper">
+                <div className="filter__header">Language:</div>
+                <div className="filter__content">
+                  <div className="filter__content-item">
+                    <label className="input-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={filters.language === "English"}
+                        disabled={true}
+                      />
+                      <span>English</span>
+                    </label>
+                  </div>
+                  <div className="filter__content-item">
+                    <label className="input-checkbox">
+                      <input
+                        type="checkbox"
+                        checked={filters.language === "Hindi"}
+                        disabled={true}
+                      />
+                      <span>Hindi</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="filter-wrapper">
+                <div className="filter__header">Discount:</div>
+                <div className="filter__content">
                   <Link
                     to={{
                       pathname: `/${title.toLowerCase().split(" ")[0]}`,
@@ -670,229 +703,134 @@ export default function FilteredPage({
                         paginationData.results
                       }&priceMin=${filters.priceRange[0]}&priceMax=${
                         filters.priceRange[1]
-                      }${getGenreSearchParams(genre.name)}`,
+                      }${getGenreSearchParams("")}&discount=10`,
                     }}
                     replace={true}
                     // className="nav-link"
-                    key={genre._id}
-                    onClick={() => toggleGenre(genre.name)}
+                    // onClick={() => toggleDiscount(10)}
                   >
                     <div className="filter__content-item">
                       <label className="input-checkbox">
-                        {/* <input type="checkbox" checked={true} /> */}
                         <input
                           type="checkbox"
-                          checked={
-                            filters.genres.findIndex(
-                              (appliedGenre) => appliedGenre == genre.name
-                            ) !== -1
-                          }
+                          checked={filters.discount === 10}
+                          disabled={true}
                         />
-                        {/* {console.log(
-                          filters.genres.findIndex(
-                            (appliedGenre) => appliedGenre == genre.name
-                          ) !== -1
-                        )} */}
-                        <span>{genre.name}</span>
+                        <span>10% or more</span>
                       </label>
                     </div>
                   </Link>
-                ))}
-              </div>
-            </div>
-            <div className="filter-wrapper">
-              <div className="filter__header">Customer Rating:</div>
-              <div className="filter__content">
-                <div className="filter__content-item">
-                  <label className="input-checkbox">
-                    <input type="checkbox" disabled={true} />
-                    <span>4★ & above</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" disabled={true} />
-                    <span>3★ & above</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" disabled={true} />
-                    <span>2★ & above</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" disabled={true} />
-                    <span>1★ & above</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className="filter-wrapper">
-              <div className="filter__header">Language:</div>
-              <div className="filter__content">
-                <div className="filter__content-item">
-                  <label className="input-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={filters.language === "English"}
-                      disabled={true}
-                    />
-                    <span>English</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  <label className="input-checkbox">
-                    <input
-                      type="checkbox"
-                      checked={filters.language === "Hindi"}
-                      disabled={true}
-                    />
-                    <span>Hindi</span>
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className="filter-wrapper">
-              <div className="filter__header">Discount:</div>
-              <div className="filter__content">
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    search: `?sort=${paginationData.sort}&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}&discount=10`,
-                  }}
-                  replace={true}
-                  // className="nav-link"
-                  // onClick={() => toggleDiscount(10)}
-                >
-                  <div className="filter__content-item">
-                    <label className="input-checkbox">
-                      <input
-                        type="checkbox"
-                        checked={filters.discount === 10}
-                        disabled={true}
-                      />
-                      <span>10% or more</span>
-                    </label>
-                  </div>
-                </Link>
 
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    search: `?sort=${paginationData.sort}&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}&discount=25`,
-                  }}
-                  replace={true}
-                  // className="nav-link"
-                  // onClick={() => toggleDiscount(25)}
-                >
-                  <div className="filter__content-item">
-                    {" "}
-                    <label className="input-checkbox">
-                      <input
-                        type="checkbox"
-                        checked={filters.discount === 25}
-                        disabled={true}
-                      />
-                      <span>25% or more</span>
-                    </label>
-                  </div>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    search: `?sort=${paginationData.sort}&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}&discount=35`,
-                  }}
-                  replace={true}
-                  // className="nav-link"
-                  // onClick={() => toggleDiscount(35)}
-                >
-                  <div className="filter__content-item">
-                    {" "}
-                    <label className="input-checkbox">
-                      <input
-                        type="checkbox"
-                        checked={filters.discount === 35}
-                        disabled={true}
-                      />
-                      <span>35% or more</span>
-                    </label>
-                  </div>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    search: `?sort=${paginationData.sort}&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}&discount=50`,
-                  }}
-                  replace={true}
-                  // className="nav-link"
-                  // onClick={() => toggleDiscount(50)}
-                >
-                  <div className="filter__content-item">
-                    {" "}
-                    <label className="input-checkbox">
-                      <input
-                        type="checkbox"
-                        checked={filters.discount === 50}
-                        disabled={true}
-                      />
-                      <span>50% or more</span>
-                    </label>
-                  </div>
-                </Link>
-              </div>
-            </div>
-            <div className="filter-wrapper">
-              <div className="filter__header">Format:</div>
-              <div className="filter__content">
-                <div className="filter__content-item">
-                  <label className="input-checkbox">
-                    <input type="checkbox" disabled={true} />
-                    <span>Hardcover</span>
-                  </label>
-                </div>
-                <div className="filter__content-item">
-                  {" "}
-                  <label className="input-checkbox">
-                    <input type="checkbox" checked={true} />
-                    <span>Paperback</span>
-                  </label>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${paginationData.sort}&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}&discount=25`,
+                    }}
+                    replace={true}
+                    // className="nav-link"
+                    // onClick={() => toggleDiscount(25)}
+                  >
+                    <div className="filter__content-item">
+                      {" "}
+                      <label className="input-checkbox">
+                        <input
+                          type="checkbox"
+                          checked={filters.discount === 25}
+                          disabled={true}
+                        />
+                        <span>25% or more</span>
+                      </label>
+                    </div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${paginationData.sort}&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}&discount=35`,
+                    }}
+                    replace={true}
+                    // className="nav-link"
+                    // onClick={() => toggleDiscount(35)}
+                  >
+                    <div className="filter__content-item">
+                      {" "}
+                      <label className="input-checkbox">
+                        <input
+                          type="checkbox"
+                          checked={filters.discount === 35}
+                          disabled={true}
+                        />
+                        <span>35% or more</span>
+                      </label>
+                    </div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${paginationData.sort}&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}&discount=50`,
+                    }}
+                    replace={true}
+                    // className="nav-link"
+                    // onClick={() => toggleDiscount(50)}
+                  >
+                    <div className="filter__content-item">
+                      {" "}
+                      <label className="input-checkbox">
+                        <input
+                          type="checkbox"
+                          checked={filters.discount === 50}
+                          disabled={true}
+                        />
+                        <span>50% or more</span>
+                      </label>
+                    </div>
+                  </Link>
                 </div>
               </div>
-            </div>
-            <div className="filter-wrapper">
-              <div className="filter__header">Availability:</div>
-              <div className="filter__content">
-                <div className="filter__content-item">
-                  <label className="input-checkbox">
-                    <input type="checkbox" disabled />
-                    <span>Exclude out of stock</span>
-                  </label>
+              <div className="filter-wrapper">
+                <div className="filter__header">Format:</div>
+                <div className="filter__content">
+                  <div className="filter__content-item">
+                    <label className="input-checkbox">
+                      <input type="checkbox" disabled={true} />
+                      <span>Hardcover</span>
+                    </label>
+                  </div>
+                  <div className="filter__content-item">
+                    {" "}
+                    <label className="input-checkbox">
+                      <input type="checkbox" checked={true} />
+                      <span>Paperback</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div className="filter-wrapper">
+                <div className="filter__header">Availability:</div>
+                <div className="filter__content">
+                  <div className="filter__content-item">
+                    <label className="input-checkbox">
+                      <input type="checkbox" disabled />
+                      <span>Exclude out of stock</span>
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        )}
+
         <div className="filtered-page-section">
           <div className="filtered-page-section__subtitle">
             {/* {title === "Genre" ? "Fiction" : title} */}
@@ -902,13 +840,6 @@ export default function FilteredPage({
               <span>
                 {getCurrentStartIndex()} - {getCurrentEndIndex()} of{" "}
                 {paginationData.totalResults}
-                {/* {paginationData.results * (paginationData.currentPage - 1) + 1}{" "}
-                -{" "}
-                {paginationData.results * paginationData.currentPage >
-                paginationData.totalResults
-                  ? paginationData.totalResults
-                  : paginationData.results * paginationData.currentPage}{" "}
-                of {paginationData.totalResults} */}
               </span>
               Products
             </div>
@@ -1061,136 +992,156 @@ export default function FilteredPage({
               </div>
             </div>
           </div>
-          <div className="filtered-page-sort-wrapper">
-            <svg
-              className="sort-icon"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M6 8C6 7.73478 6.10536 7.48043 6.29289 7.29289C6.48043 7.10536 6.73478 7 7 7H17C17.2652 7 17.5196 7.10536 17.7071 7.29289C17.8946 7.48043 18 7.73478 18 8C18 8.26522 17.8946 8.51957 17.7071 8.70711C17.5196 8.89464 17.2652 9 17 9H7C6.73478 9 6.48043 8.89464 6.29289 8.70711C6.10536 8.51957 6 8.26522 6 8V8Z"
-                fill="#333333"
-              />
-              <path
-                d="M8 12C8 11.7348 8.10536 11.4804 8.29289 11.2929C8.48043 11.1054 8.73478 11 9 11H15C15.2652 11 15.5196 11.1054 15.7071 11.2929C15.8946 11.4804 16 11.7348 16 12C16 12.2652 15.8946 12.5196 15.7071 12.7071C15.5196 12.8946 15.2652 13 15 13H9C8.73478 13 8.48043 12.8946 8.29289 12.7071C8.10536 12.5196 8 12.2652 8 12Z"
-                fill="#333333"
-              />
-              <path
-                d="M11 15C10.7348 15 10.4804 15.1054 10.2929 15.2929C10.1054 15.4804 10 15.7348 10 16C10 16.2652 10.1054 16.5196 10.2929 16.7071C10.4804 16.8946 10.7348 17 11 17H13C13.2652 17 13.5196 16.8946 13.7071 16.7071C13.8946 16.5196 14 16.2652 14 16C14 15.7348 13.8946 15.4804 13.7071 15.2929C13.5196 15.1054 13.2652 15 13 15H11Z"
-                fill="#333333"
-              />
-            </svg>
-            <span>Sort By - </span>
-            <div className="filtered-page-sort">
-              {/* {"Price High to Low"} */}
-              {paginationData.sort === "" && "Relevance"}
-              {paginationData.sort === "low-high" && "Price Low to High"}
-              {paginationData.sort === "high-low" && "Price High to Low"}
-              {paginationData.sort === "date" && "Publication Date"}
-              {paginationData.sort === "review" && "Avg. Customer Review"}
+          <div className="filtered-page-sort-filter-wrapper">
+            <div className="filtered-page-sort-wrapper">
               <svg
-                className="dropdown-icon"
+                className="sort-icon"
                 width="24"
                 height="24"
                 viewBox="0 0 24 24"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
-                <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" />
+                <path
+                  d="M6 8C6 7.73478 6.10536 7.48043 6.29289 7.29289C6.48043 7.10536 6.73478 7 7 7H17C17.2652 7 17.5196 7.10536 17.7071 7.29289C17.8946 7.48043 18 7.73478 18 8C18 8.26522 17.8946 8.51957 17.7071 8.70711C17.5196 8.89464 17.2652 9 17 9H7C6.73478 9 6.48043 8.89464 6.29289 8.70711C6.10536 8.51957 6 8.26522 6 8V8Z"
+                  fill="#333333"
+                />
+                <path
+                  d="M8 12C8 11.7348 8.10536 11.4804 8.29289 11.2929C8.48043 11.1054 8.73478 11 9 11H15C15.2652 11 15.5196 11.1054 15.7071 11.2929C15.8946 11.4804 16 11.7348 16 12C16 12.2652 15.8946 12.5196 15.7071 12.7071C15.5196 12.8946 15.2652 13 15 13H9C8.73478 13 8.48043 12.8946 8.29289 12.7071C8.10536 12.5196 8 12.2652 8 12Z"
+                  fill="#333333"
+                />
+                <path
+                  d="M11 15C10.7348 15 10.4804 15.1054 10.2929 15.2929C10.1054 15.4804 10 15.7348 10 16C10 16.2652 10.1054 16.5196 10.2929 16.7071C10.4804 16.8946 10.7348 17 11 17H13C13.2652 17 13.5196 16.8946 13.7071 16.7071C13.8946 16.5196 14 16.2652 14 16C14 15.7348 13.8946 15.4804 13.7071 15.2929C13.5196 15.1054 13.2652 15 13 15H11Z"
+                  fill="#333333"
+                />
               </svg>
-              <div className="sort-dropdown">
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    search: `?sort=${""}&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}`,
-                  }}
-                  replace={true}
-                  className="nav-link"
-                  onClick={() => updateSort("")}
+              <span>Sort By - </span>
+              <div className="filtered-page-sort">
+                {/* {"Price High to Low"} */}
+                {paginationData.sort === "" && "Relevance"}
+                {paginationData.sort === "low-high" && "Price Low to High"}
+                {paginationData.sort === "high-low" && "Price High to Low"}
+                {paginationData.sort === "date" && "Publication Date"}
+                {paginationData.sort === "review" && "Avg. Customer Review"}
+                <svg
+                  className="dropdown-icon"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  {" "}
-                  <div className="sort-dropdown__item">Relevance</div>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    // search: "?sort=high-low",
-                    search: `?sort=high-low&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}`,
-                  }}
-                  replace={true}
-                  className="nav-link"
-                  onClick={() => updateSort("high-low")}
-                >
-                  {" "}
-                  <div className="sort-dropdown__item">Price High to Low</div>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    // search: "?sort=low-high",
-                    search: `?sort=low-high&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}`,
-                  }}
-                  replace={true}
-                  className="nav-link"
-                  onClick={() => updateSort("low-high")}
-                >
-                  {" "}
-                  <div className="sort-dropdown__item">Price Low to High</div>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    // search: "?sort=review",
-                    search: `?sort=review&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}`,
-                  }}
-                  replace={true}
-                  className="nav-link"
-                  onClick={() => updateSort("review")}
-                >
-                  {" "}
-                  <div className="sort-dropdown__item">
-                    Avg. Customer Review
-                  </div>
-                </Link>
-                <Link
-                  to={{
-                    pathname: `/${title.toLowerCase().split(" ")[0]}`,
-                    // search: "?sort=date",
-                    search: `?sort=date&page=${1}&results=${
-                      paginationData.results
-                    }&priceMin=${filters.priceRange[0]}&priceMax=${
-                      filters.priceRange[1]
-                    }${getGenreSearchParams("")}`,
-                  }}
-                  replace={true}
-                  className="nav-link"
-                  onClick={() => updateSort("date")}
-                >
-                  {" "}
-                  <div className="sort-dropdown__item">Publication Date</div>
-                </Link>
+                  <path d="M7.41 8.59L12 13.17L16.59 8.59L18 10L12 16L6 10L7.41 8.59Z" />
+                </svg>
+                <div className="sort-dropdown">
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      search: `?sort=${""}&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}`,
+                    }}
+                    replace={true}
+                    className="nav-link"
+                    onClick={() => updateSort("")}
+                  >
+                    {" "}
+                    <div className="sort-dropdown__item">Relevance</div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      // search: "?sort=high-low",
+                      search: `?sort=high-low&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}`,
+                    }}
+                    replace={true}
+                    className="nav-link"
+                    onClick={() => updateSort("high-low")}
+                  >
+                    {" "}
+                    <div className="sort-dropdown__item">Price High to Low</div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      // search: "?sort=low-high",
+                      search: `?sort=low-high&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}`,
+                    }}
+                    replace={true}
+                    className="nav-link"
+                    onClick={() => updateSort("low-high")}
+                  >
+                    {" "}
+                    <div className="sort-dropdown__item">Price Low to High</div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      // search: "?sort=review",
+                      search: `?sort=review&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}`,
+                    }}
+                    replace={true}
+                    className="nav-link"
+                    onClick={() => updateSort("review")}
+                  >
+                    {" "}
+                    <div className="sort-dropdown__item">
+                      Avg. Customer Review
+                    </div>
+                  </Link>
+                  <Link
+                    to={{
+                      pathname: `/${title.toLowerCase().split(" ")[0]}`,
+                      // search: "?sort=date",
+                      search: `?sort=date&page=${1}&results=${
+                        paginationData.results
+                      }&priceMin=${filters.priceRange[0]}&priceMax=${
+                        filters.priceRange[1]
+                      }${getGenreSearchParams("")}`,
+                    }}
+                    replace={true}
+                    className="nav-link"
+                    onClick={() => updateSort("date")}
+                  >
+                    {" "}
+                    <div className="sort-dropdown__item">Publication Date</div>
+                  </Link>
+                </div>
               </div>
             </div>
+            {!isDesktopOrLaptop && (
+              <div className="filtered-page-filter-wrapper">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M13.447 20.905C13.6126 20.8238 13.7521 20.6979 13.8499 20.5415C13.9476 20.3851 13.9996 20.2044 14 20.02V14.7C14 14.438 14.105 14.186 14.293 14L20.414 7.94599C20.789 7.57499 21 7.07099 21 6.54599V3.98999C20.9995 3.85928 20.9732 3.72997 20.9226 3.60944C20.8721 3.48891 20.7982 3.37954 20.7053 3.28758C20.6124 3.19563 20.5023 3.12289 20.3813 3.07354C20.2603 3.02419 20.1307 2.9992 20 2.99999H4C3.447 2.99999 3 3.44199 3 3.98999V6.54599C3 7.07099 3.211 7.57499 3.586 7.94599L9.707 14C9.79974 14.0915 9.8734 14.2004 9.92369 14.3206C9.97399 14.4408 9.99993 14.5697 10 14.7V21.01C10 21.745 10.782 22.223 11.447 21.894L13.447 20.905V20.905Z"
+                    fill="#211F1F"
+                  />
+                </svg>
+                <span>Filter</span>
+              </div>
+            )}
           </div>
+
           <div className="filtered-page-section__content">
             <ThumbnailView
               // booksData={trendingBooksData}
