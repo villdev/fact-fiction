@@ -1,0 +1,71 @@
+.badge-wrapper {
+  position: relative;
+  display: inline-flex;
+}
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 1.25rem;
+  width: auto;
+  height: 1.25rem;
+  transform: scale(1) translate(40%, -40%);
+  transform-origin: 100% 0%;
+  font-size: 0.75rem;
+  padding: 0 0.375rem;
+  line-height: 1;
+  font-weight: 600;
+}
+.badge--sm {
+  min-width: 1rem;
+  height: 1rem;
+  font-size: 0.6rem;
+}
+.badge--md {
+  min-width: 1.25rem;
+  height: 1.25rem;
+  font-size: 0.75rem;
+}
+.badge--lg {
+  min-width: 1.5rem;
+  height: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.badge-dot {
+  width: 1rem;
+  min-width: 1rem;
+  height: 1rem;
+  border: 3px solid var(--black-color1);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: scale(1) translate(30%, -30%);
+  transform-origin: 100% 0%;
+  border-radius: 0.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* todo: make this border dynamic */
+}
+.badge-dot.badge-dot--sm {
+  width: 0.75rem;
+  min-width: 0.75rem;
+  height: 0.75rem;
+}
+.badge-dot.badge-dot--lg {
+  width: 1.25rem;
+  min-width: 1.25rem;
+  height: 1.25rem;
+}
+
+.badge-wrapper .badge--bottom {
+  top: 100%;
+  transform: scale(1) translate(30%, -70%);
+  transform-origin: 100% 0%;
+}
