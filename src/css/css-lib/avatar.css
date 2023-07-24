@@ -1,0 +1,53 @@
+.avatar {
+  border-radius: 50%;
+  width: 2.25rem;
+  height: 2.25rem;
+  /* width: 36px;
+  height: 36px; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+.avatar > * {
+  width: 100%;
+  border-radius: 50%;
+}
+.avatar--icon > * {
+  width: 80%;
+}
+.avatar--square {
+  border-radius: 0;
+}
+.avatar--square > * {
+  border-radius: 0;
+}
+.avatar--rounded {
+  border-radius: 0.5rem;
+}
+.avatar--rounded > * {
+  border-radius: 0.25rem;
+}
+
+.avatar--sm {
+  width: 1.5rem;
+  height: 1.5rem;
+  /* width: 24px;
+  height: 24px; */
+}
+.avatar--md {
+  width: 2.25rem;
+  height: 2.25rem;
+}
+.avatar--lg {
+  width: 3rem;
+  height: 3rem;
+}
+.avatar--xl {
+  width: 4.5rem;
+  height: 4.5rem;
+}
+.avatar--2xl {
+  width: 6.125rem;
+  height: 6.125rem;
+}
